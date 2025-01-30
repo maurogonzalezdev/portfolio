@@ -3,11 +3,15 @@
     <app-ribbon-layout></app-ribbon-layout>
   </div>
   <div class="bg-green-500 min-h-full w-12 absolute top-0 bottom-0 mt-5"></div>
-  <div class="bg-orange-400 min-h-full w-64 absolute top-0 bottom-0 mt-5 ml-12"></div>
   <div
-    class="bg-blue-500 min-h-full absolute mt-5 left-0 top-0 right-0 bottom-0 margin-main break-words px-4 py-6 overflow-y-auto"
+    class="bg-orange-400 min-h-full w-64 absolute top-0 bottom-0 mt-5 ml-12"
+  ></div>
+  <div
+    class="bg-blue-500 min-h-full absolute mt-5 left-0 top-0 right-0 bottom-0 margin-main break-words px-4 pt-6 pb-12 overflow-y-auto"
   >
-    <router-outlet></router-outlet>
+    <ng-scrollbar>
+      <router-outlet></router-outlet>
+    </ng-scrollbar>
   </div>
   <div class="bg-slate-500 absolute left-0 right-0 bottom-0">
     <app-ribbon-layout></app-ribbon-layout>
