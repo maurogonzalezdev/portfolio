@@ -1,19 +1,27 @@
 <main class="bg-red-500 w-full min-h-svh max-h-svh relative overflow-y-hidden">
-  <div class="bg-yellow-300 absolute left-0 top-0 right-0">
+  <!--Top ribbon-->
+  <div class="absolute left-0 top-0 right-0">
     <app-ribbon-layout></app-ribbon-layout>
   </div>
-  <div class="bg-green-500 min-h-full w-12 absolute top-0 bottom-0 mt-5"></div>
+  <!--Menu-->
+  <app-menu></app-menu>
+  <!--Navbar-->
+  <app-navbar></app-navbar>
+  <!--Main content-->
   <div
-    class="bg-orange-400 min-h-full w-64 absolute top-0 bottom-0 mt-5 ml-12"
-  ></div>
-  <div
-    class="bg-blue-500 min-h-full absolute mt-5 left-0 top-0 right-0 bottom-0 margin-main break-words px-4 pt-6 pb-12 overflow-y-auto"
+    class="bg-blue-500 min-h-full absolute mt-5 left-0 top-0 right-0 bottom-0 px-4 pt-6 pb-12"
+    [ngStyle]="{ 'margin-left': mainStyle() }"
   >
-    <ng-scrollbar>
+    <ng-scrollbar
+      hoverOffset="true"
+      appearance="compact"
+      class="relative right-0"
+    >
       <router-outlet></router-outlet>
     </ng-scrollbar>
   </div>
-  <div class="bg-slate-500 absolute left-0 right-0 bottom-0">
+  <!--Bottom ribbon-->
+  <div class="absolute left-0 right-0 bottom-0">
     <app-ribbon-layout></app-ribbon-layout>
   </div>
 </main>

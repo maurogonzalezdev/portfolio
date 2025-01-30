@@ -29,6 +29,24 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'profile',
+    pathMatch: 'full',
+    loadComponent: () => {
+      return import('./pages/profile-page/profile-page.component').then(
+        (m) => m.ProfilePageComponent
+      );
+    },
+  },
+  {
+    path: 'settings',
+    pathMatch: 'full',
+    loadComponent: () => {
+      return import('./pages/settings-page/settings-page.component').then(
+        (m) => m.SettingsPageComponent
+      );
+    },
+  },
+  {
     path: '**',
     loadComponent: () => {
       return import('./pages/error-page/error-page.component').then(
