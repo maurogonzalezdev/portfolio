@@ -14,7 +14,7 @@
   </span>
   @if(section.isVisible){
   <ul>
-    @for(item of section.items; track item){
+    @for(item of section.items; track item.id){
     <app-navbar-item [setNavBarItem]="item"></app-navbar-item>
     }
   </ul>
