@@ -47,6 +47,15 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'cli',
+    pathMatch: 'full',
+    loadComponent: () => {
+      return import('./pages/cli-page/cli-page.component').then(
+        (m) => m.CliPageComponent
+      );
+    },
+  },
+  {
     path: '**',
     loadComponent: () => {
       return import('./pages/error-page/error-page.component').then(

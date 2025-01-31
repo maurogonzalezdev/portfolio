@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { RibbonLayoutComponent } from '../ribbon-layout/ribbon-layout.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NgStyle } from '@angular/common';
@@ -11,7 +11,6 @@ import { MenuService } from '../../services/menu.service';
   selector: 'app-main-layout',
   imports: [
     RouterOutlet,
-    RouterLink,
     RibbonLayoutComponent,
     MenuComponent,
     NavbarComponent,
