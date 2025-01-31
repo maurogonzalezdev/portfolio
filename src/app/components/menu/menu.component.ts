@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
-import { MenuItem } from '../../interfaces/menu-item';
+import { MenuItem } from '../../interfaces/menu-item.interface';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 
 @Component({
@@ -19,12 +19,12 @@ export class MenuComponent implements OnInit {
 
   private _menuItems: MenuItem[] = [
     {
-      url: 'settings',
-      name: 'heroCog6Tooth',
+      url: '/',
+      name: 'heroUserCircle',
     },
     {
-      url: 'profile',
-      name: 'heroUserCircle',
+      url: 'settings',
+      name: 'heroCog6Tooth',
     },
     {
       url: 'cli',
