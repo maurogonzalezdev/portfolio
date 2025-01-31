@@ -4,18 +4,17 @@ import { NgStyle } from '@angular/common';
 import { NavBar } from '../../interfaces/navbar.interface';
 import { NavbarItemComponent } from '../navbar-item/navbar-item.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import {
-heroChevronDown,
-heroChevronRight
-} from '@ng-icons/heroicons/outline';
+import { heroChevronDown, heroChevronRight } from '@ng-icons/heroicons/outline';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgIcon,NgStyle, NavbarItemComponent],
-  providers: [ provideIcons({
+  imports: [NgIcon, NgStyle, NavbarItemComponent],
+  providers: [
+    provideIcons({
       heroChevronDown,
-      heroChevronRight
-    })],
+      heroChevronRight,
+    }),
+  ],
   templateUrl: './navbar.component.html',
   styles: ``,
 })
@@ -29,28 +28,112 @@ export class NavbarComponent {
   private _navBar: NavBar[] = [
     {
       id: 1,
-      section: 'about',
+      section: 'main',
       items: [
         {
           id: 1,
-          name: 'home',
-          icon: 'iconHome',
+          name: 'index',
+          icon: 'html.svg',
           url: '/',
-          isVisible: true
+          isVisible: true,
+        },
+        {
+          id: 2,
+          name: 'about',
+          icon: 'css.svg',
+          url: '/about',
+          isVisible: true,
+        },
+        {
+          id: 3,
+          name: 'skills',
+          icon: 'javascript.svg',
+          url: '/skills',
+          isVisible: true,
+        },
+        {
+          id: 4,
+          name: 'resume',
+          icon: 'typescript.svg',
+          url: '/resume',
+          isVisible: true,
         },
       ],
       isVisible: true,
     },
     {
       id: 2,
-      section: 'about2',
+      section: 'projects',
       items: [
         {
-          id: 2,
-          name: 'home2',
-          icon: 'iconHome',
+          id: 1,
+          name: 'some-stunning-project',
+          icon: 'angular.svg',
           url: '/',
-          isVisible: true
+          isVisible: true,
+        },
+        {
+          id: 2,
+          name: 'some-stunning-project',
+          icon: 'nest.svg',
+          url: '/',
+          isVisible: true,
+        },
+        {
+          id: 3,
+          name: 'some-stunning-project',
+          icon: 'nest.svg',
+          url: '/',
+          isVisible: true,
+        },
+        {
+          id: 4,
+          name: 'some-stunning-project',
+          icon: 'nodejs.svg',
+          url: '/',
+          isVisible: true,
+        },
+        {
+          id: 5,
+          name: 'some-stunning-project',
+          icon: 'angular.svg',
+          url: '/',
+          isVisible: true,
+        },
+        {
+          id: 6,
+          name: 'some-stunning-project',
+          icon: 'angular.svg',
+          url: '/',
+          isVisible: true,
+        },
+      ],
+      isVisible: true,
+    },
+    {
+      id: 3,
+      section: 'contact',
+      items: [
+        {
+          id: 1,
+          name: 'email-me',
+          icon: 'folder-mail-open.svg',
+          url: '/',
+          isVisible: true,
+        },
+        {
+          id: 2,
+          name: 'blog',
+          icon: 'markdown.svg',
+          url: '/',
+          isVisible: true,
+        },
+        {
+          id: 3,
+          name: 'social-networks',
+          icon: 'favicon.svg',
+          url: '/',
+          isVisible: true,
         },
       ],
       isVisible: true,
@@ -79,7 +162,7 @@ export class NavbarComponent {
     return this._navBar;
   }
 
-  public getSectionIcon(status: boolean): string{
+  public getSectionIcon(status: boolean): string {
     return status ? 'heroChevronDown' : 'heroChevronRight';
   }
 }

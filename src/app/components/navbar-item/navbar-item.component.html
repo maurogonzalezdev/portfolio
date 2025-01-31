@@ -1,3 +1,6 @@
 <ul >
-  <li class="ml-7">{{getNavBarItem.name}}</li>
+  <li class="ml-5 flex flex-row justify-start items-center gap-2">
+    <img [src]="getNavBarItem.icon" [alt]="getNavBarItem.name" width="16">
+    {{getNavBarItem.name}}
+  </li>
 </ul>
