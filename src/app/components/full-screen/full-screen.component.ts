@@ -1,12 +1,5 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import {
-  Component,
-  HostListener,
-  inject,
-  Inject,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   heroArrowsPointingIn,
@@ -26,66 +19,117 @@ import {
   styles: ``,
 })
 export class FullScreenComponent implements OnInit {
-  private _elem: any;
-  public isFullScreen: boolean = false;
+  private _element: any;
+  private _isFullScreen: boolean = false;
 
   constructor(@Inject(DOCUMENT) private readonly _document: any) {}
 
   ngOnInit(): void {
-    this._elem = document.documentElement;
-    this._chkScreenMode();
+    this._element = document.documentElement;
+    this._checkScreenMode();
   }
 
-  // TODO: Check how to get F11 or Enter - Exit fullscreen from Keyboard events
   @HostListener('document:fullscreenchange', ['$event'])
   @HostListener('document:webkitfullscreenchange', ['$event'])
   @HostListener('document:mozfullscreenchange', ['$event'])
   @HostListener('document:MSFullscreenChange', ['$event'])
   fullscreenmodes(event: Event) {
-    this._chkScreenMode();
+    setTimeout(() => {
+      this._checkScreenMode();
+    }, 100);
   }
 
-  private _chkScreenMode(): void {
+  @HostListener('document:keydown', ['$event'])
+  private async _handleKeyboardEvent(event: KeyboardEvent) {
+    if (!event.isTrusted) return;
+
+    if (event.key === 'F11') {
+      event.preventDefault();
+      await this.toggleFullScreen();
+    }
+
+    if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+      event.preventDefault();
+      await this.toggleFullScreen();
+    }
+  }
+
+  // Añadir al componente
+  @HostListener('document:fullscreenerror', ['$event'])
+  private _handleFullscreenError(event: Event): void {
+    console.info('Fullscreen request was denied by the browser or user');
+    this._isFullScreen = false;
+  }
+
+  get getIsFullScreen(): boolean {
+    return this._isFullScreen;
+  }
+
+  private _canRequestFullscreen(): boolean {
+    return (
+      document.documentElement.requestFullscreen !== undefined &&
+      !document.fullscreenElement
+    );
+  }
+
+  private _checkScreenMode(): void {
+    // Mejorar la detección cross-browser
+    this._isFullScreen = Boolean(document.fullscreenElement);
+  }
+
+  private async _openFullscreen(): Promise<void> {
+    // Verificar si ya estamos en pantalla completa
     if (document.fullscreenElement) {
-      //fullscreen
-      this.isFullScreen = true;
-    } else {
-      //not in full screen
-      this.isFullScreen = false;
+      return;
+    }
+
+    try {
+      // Verificar si el navegador soporta la API de pantalla completa
+      if (!this._element.requestFullscreen) {
+        throw new Error('Fullscreen API not supported');
+      }
+
+      await this._element.requestFullscreen();
+    } catch (err) {
+      if (err instanceof Error) {
+        // Solo logear errores que no sean por falta de interacción del usuario
+        if (!err.message.includes('user gesture')) {
+          console.warn('Fullscreen error:', err.message);
+        }
+      }
     }
   }
 
-  public openFullscreen(): void {
-    if (this._elem.requestFullscreen) {
-      this._elem.requestFullscreen();
-    } else if (this._elem.mozRequestFullScreen) {
-      /* Firefox */
-      this._elem.mozRequestFullScreen();
-    } else if (this._elem.webkitRequestFullscreen) {
-      /* Chrome, Safari and Opera */
-      this._elem.webkitRequestFullscreen();
-    } else if (this._elem.msRequestFullscreen) {
-      /* IE/Edge */
-      this._elem.msRequestFullscreen();
+  private async _closeFullscreen(): Promise<void> {
+    // Verificar si realmente estamos en pantalla completa
+    if (!document.fullscreenElement) {
+      return;
     }
-  }
-  /* Close fullscreen */
-  public closeFullscreen(): void {
-    if (this._document.exitFullscreen) {
-      this._document.exitFullscreen();
-    } else if (this._document.mozCancelFullScreen) {
-      /* Firefox */
-      this._document.mozCancelFullScreen();
-    } else if (this._document.webkitExitFullscreen) {
-      /* Chrome, Safari and Opera */
-      this._document.webkitExitFullscreen();
-    } else if (this._document.msExitFullscreen) {
-      /* IE/Edge */
-      this._document.msExitFullscreen();
+
+    try {
+      await this._document.exitFullscreen();
+    } catch (err) {
+      if (err instanceof Error) {
+        console.warn('Exit fullscreen error:', err.message);
+      }
     }
   }
 
-  public getIconName(): string{
-    return this.isFullScreen ? 'heroArrowsPointingIn' : 'heroArrowsPointingOut'
+  public async toggleFullScreen(): Promise<void> {
+    try {
+      if (this._isFullScreen) {
+        await this._closeFullscreen();
+      } else {
+        await this._openFullscreen();
+      }
+    } catch (err) {
+      console.warn('Toggle fullscreen failed:', err);
+    }
+  }
+
+  public getIconName(): string {
+    return this._isFullScreen
+      ? 'heroArrowsPointingIn'
+      : 'heroArrowsPointingOut';
   }
 }
