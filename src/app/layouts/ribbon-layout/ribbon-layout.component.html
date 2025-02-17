@@ -1,27 +1,56 @@
-<div class="w-full h-6 bg-slate-600 flex flex-row justify-between items-center">
-  @if(getPosition==='top'){ }@else {
-  <app-full-screen></app-full-screen>
-  <section
-    class="text-sm pr-3 flex flex-row justify-between items-center pt-1"
-  >
+<div class="w-full h-6 bg-slate-600 z-50">
+  @if(getPosition==='top'){
 
-    <span
-      >Made with
-      <ng-icon
-        [name]="'heroHeart'"
-        size="16"
-        color="#EF154B"
-        class="-mb-0.5"
-      ></ng-icon>
-      in
-      <a href="https://angular.dev/" title="Angular" target="_blank"
-        ><img
-          src="/icons/angular_gradient.png"
-          alt="Angular Logo"
-          title="Angular"
-          width="18"
-          class="inline-block mb-1" /></a
-    ></span>
-  </section>
+  <div class="flex flex-row justify-start items-center gap-5">
+    <div class="ml-3 cursor-pointer">
+      <a
+        title="mauro-gonzalez.dev"
+        routerLink="/"
+        [title]="'mauro-gonzalez.dev'"
+      >
+        <img src="/favicon.ico" alt="mauro-gonzalez.dev" width="15" />
+      </a>
+    </div>
+    <section>
+      <ul class="flex flex-row gap-2 text-sm">
+        @for(navLink of getTopNavBar;track navLink){
+        <li>
+          @if(navLink==='main'){
+          <a [routerLink]="'/'">{{ navLink }}</a>
+          }@else {
+          <a [routerLink]="'/' + navLink">
+            {{ navLink }}
+          </a>
+          }
+        </li>
+        }
+      </ul>
+    </section>
+  </div>
+  }@else {
+  <div class="flex flex-row justify-between items-start">
+    <app-full-screen></app-full-screen>
+    <section
+      class="text-sm pr-3 flex flex-row justify-between items-center pt-1"
+    >
+      <span
+        >Made with
+        <ng-icon
+          [name]="'heroHeart'"
+          size="16"
+          color="#EF154B"
+          class="-mb-0.5"
+        ></ng-icon>
+        in
+        <a href="https://angular.dev/" title="Angular" target="_blank"
+          ><img
+            src="/icons/angular_gradient.png"
+            alt="Angular Logo"
+            width="18"
+            class="inline-block mb-1" /></a
+      ></span>
+    </section>
+  </div>
+
   }
 </div>
