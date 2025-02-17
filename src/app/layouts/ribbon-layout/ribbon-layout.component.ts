@@ -3,11 +3,12 @@ import { FullScreenComponent } from '../../components/full-screen/full-screen.co
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroHeart } from '@ng-icons/heroicons/outline';
 import { RouterLink } from '@angular/router';
+import { TitleCasePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-ribbon-layout',
   standalone: true,
-  imports: [FullScreenComponent, NgIcon, RouterLink],
+  imports: [FullScreenComponent, NgIcon, RouterLink, TitleCasePipe],
   templateUrl: './ribbon-layout.component.html',
   providers: [
     provideIcons({
@@ -26,6 +27,7 @@ export class RibbonLayoutComponent {
 
   private _position: 'top' | 'bottom' = 'top';
   private _topNavBar: string[] = [
+    'home',
     'main',
     'settings',
     'cli',
