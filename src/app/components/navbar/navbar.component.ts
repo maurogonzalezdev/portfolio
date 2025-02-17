@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
-import { NgStyle } from '@angular/common';
 import { NavBar } from '../../interfaces/navbar.interface';
 import { NavbarItemComponent } from '../navbar-item/navbar-item.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -8,7 +7,7 @@ import { heroChevronDown, heroChevronRight } from '@ng-icons/heroicons/outline';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgIcon, NgStyle, NavbarItemComponent],
+  imports: [NgIcon, NavbarItemComponent],
   providers: [
     provideIcons({
       heroChevronDown,
@@ -68,7 +67,7 @@ export class NavbarComponent {
         {
           id: 1,
           name: 'some-stunning-project',
-          icon: '/icons/angular.svg',
+          icon: '/icons/angular_gradient.png',
           url: '/',
           isVisible: true,
         },
@@ -96,14 +95,14 @@ export class NavbarComponent {
         {
           id: 5,
           name: 'some-stunning-project',
-          icon: '/icons/angular.svg',
+          icon: '/icons/angular_gradient.png',
           url: '/',
           isVisible: true,
         },
         {
           id: 6,
           name: 'some-stunning-project',
-          icon: '/icons/angular.svg',
+          icon: '/icons/angular_gradient.png',
           url: '/',
           isVisible: true,
         },

@@ -1,3 +1,27 @@
 <div class="w-full h-6 bg-slate-600 flex flex-row justify-between items-center">
+  @if(getPosition==='top'){ }@else {
   <app-full-screen></app-full-screen>
-  <div>text</div></div>
+  <section
+    class="text-sm pr-3 flex flex-row justify-between items-center pt-1"
+  >
+
+    <span
+      >Made with
+      <ng-icon
+        [name]="'heroHeart'"
+        size="16"
+        color="#EF154B"
+        class="-mb-0.5"
+      ></ng-icon>
+      in
+      <a href="https://angular.dev/" title="Angular" target="_blank"
+        ><img
+          src="/icons/angular_gradient.png"
+          alt="Angular Logo"
+          title="Angular"
+          width="18"
+          class="inline-block mb-1" /></a
+    ></span>
+  </section>
+  }
+</div>
