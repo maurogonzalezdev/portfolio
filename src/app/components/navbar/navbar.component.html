@@ -1,24 +1,27 @@
 @if(getIsNavBarVisible){
 <nav
-  class="bg-orange-400 min-h-full w-64 absolute top-0 bottom-0 mt-6 ml-12 pl-5 pr-5 pt-2"
+  class="bg-orange-400 min-h-full w-64 absolute top-0 bottom-0 mt-6 ml-12 pl-5 pr-5 pt-2 pb-14"
 >
-  <span class="block mb-2">Portfolio</span>
+  <ng-scrollbar  hoverOffset="true"
+  appearance="compact"
+  class="relative right-0">
+    <span class="block mb-2">Portfolio</span>
 
-  @for(section of getNavBar; track section.id){
-  <span
-    class=" cursor-pointer mt-1 flex flex-row justify-start items-center gap-1"
-    (click)="section.isVisible = !section.isVisible"
-  >
-    <ng-icon [name]="getSectionIcon(section.isVisible)" size="16"></ng-icon>
-    {{ section.section }}
-  </span>
-  @if(section.isVisible){
-  <ul>
-    @for(item of section.items; track item.id){
-    <app-navbar-item [setNavBarItem]="item"></app-navbar-item>
-    }
-  </ul>
-  } }
+    @for(section of getNavBar; track section.id){
+    <span
+      class="cursor-pointer mt-1 flex flex-row justify-start items-center gap-1"
+      (click)="section.isVisible = !section.isVisible"
+    >
+      <ng-icon [name]="getSectionIcon(section.isVisible)" size="16"></ng-icon>
+      {{ section.section }}
+    </span>
+    @if(section.isVisible){
+    <ul>
+      @for(item of section.items; track item.id){
+      <app-navbar-item [setNavBarItem]="item"></app-navbar-item>
+      }
+    </ul>
+    } }
+  </ng-scrollbar>
 </nav>
-
 }
