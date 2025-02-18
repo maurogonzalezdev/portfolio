@@ -1,0 +1,11 @@
+<a
+  [routerLink]="getLink.url"
+  class="flex flex-wrap justify-start items-center gap-1.5 leading-none w-fit"
+>
+  <span class="mt-0.5 text-sm font-semibold">
+    {{ getLink.name | titlecase }}
+  </span>
+  <span class="mt-0.5 text-sm">
+    {{ "C:/mauro-gonzalez.dev/projects" + getLink.url }}
+  </span>
+</a>
