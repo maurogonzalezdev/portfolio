@@ -1,0 +1,11 @@
+<h3 class="text-lg">
+  {{ getTitle }}
+</h3>
+<ul class="flex flex-col gap-2">
+  @for(link of getLinks; track link.id){
+
+  <li class="mt-1">
+    <app-start-link [setLink]="link"></app-start-link>
+  </li>
+  }
+</ul>

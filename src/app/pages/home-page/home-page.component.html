@@ -1,9 +1,10 @@
 <div class="bg-orange-500 p-2 md:p-12 lg:p-20 xl:p-24">
  <div class="flex flex-col flex-wrap gap-4 items-start md:justify-between md:items-center md:flex-row md:gap-16">
-  <div class="flex flex-col gap-1">
+  <section class="flex flex-col gap-1">
     <app-title [setTitle]="getTitle" [setSubtitle]="getSubtitle"></app-title>
-    ewesub
-  </div>
-  <div>col2</div>
+    <app-start-links [setTitle]="'Start'" class="mt-3"></app-start-links>
+    <app-recent-links [setTitle]="'Recent'" class="mt-6"></app-recent-links>
+  </section>
+  <section>col2</section>
  </div>
 </div>

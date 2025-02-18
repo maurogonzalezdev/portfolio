@@ -1,0 +1,9 @@
+<a
+  [routerLink]="getLink.url"
+  class="flex flex-wrap justify-start items-center gap-1.5 leading-none w-fit"
+>
+  <ng-icon [name]="getLink.icon" size="20" strokeWidth="2"></ng-icon
+  ><span class="mt-0.5 text-sm">
+    {{ getLink.name | titlecase }}
+  </span>
+</a>
