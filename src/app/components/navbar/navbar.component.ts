@@ -4,10 +4,11 @@ import { NavBar } from '../../interfaces/navbar.interface';
 import { NavbarItemComponent } from '../navbar-item/navbar-item.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronDown, heroChevronRight } from '@ng-icons/heroicons/outline';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgIcon, NavbarItemComponent],
+  imports: [NgIcon, NavbarItemComponent, NgScrollbarModule],
   providers: [
     provideIcons({
       heroChevronDown,

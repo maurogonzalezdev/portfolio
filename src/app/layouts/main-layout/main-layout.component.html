@@ -1,4 +1,4 @@
-<main class="bg-red-500 w-full min-h-svh max-h-svh relative overflow-y-hidden">
+<main class="bg-red-500 w-full min-h-svh max-h-svh relative overflow-y-hidden overflow-x-hidden">
   <!--Top ribbon-->
   <div class="absolute left-0 top-0 right-0">
     <app-ribbon-layout [setPosition]="'top'"></app-ribbon-layout>
@@ -9,7 +9,7 @@
   <app-navbar></app-navbar>
   <!--Main content-->
   <div
-    class="bg-blue-500 min-h-full absolute mt-6 left-0 top-0 right-0 bottom-0 px-4 pt-6 pb-6"
+    class="bg-blue-500 min-h-full absolute mt-6 left-0 top-0 right-0 bottom-0 px-4 pt-6 pb-14 min-w-64"
     [ngStyle]="{ 'margin-left': mainStyle() }"
   >
     <ng-scrollbar
