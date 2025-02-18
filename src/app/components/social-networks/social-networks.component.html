@@ -1,0 +1,9 @@
+<h4 class="text-lg">Social Networks</h4>
+<ul class="flex flex-col gap-2">
+  @for(link of getSocialNetworks; track link.id){
+
+  <li class="mt-1">
+    <app-social-network [setSocialNetwork]="link"></app-social-network>
+  </li>
+  }
+</ul>

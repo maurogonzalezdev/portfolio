@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { TitleComponent } from '../../components/title/title.component';
 import { StartLinksComponent } from "../../components/start-links/start-links.component";
 import { RecentLinksComponent } from '../../components/recent-links/recent-links.component';
+import { SocialNetworksComponent } from "../../components/social-networks/social-networks.component";
 
 @Component({
   selector: 'app-home-page',
-  imports: [TitleComponent, StartLinksComponent, RecentLinksComponent],
+  imports: [TitleComponent, StartLinksComponent, RecentLinksComponent, SocialNetworksComponent],
   templateUrl: './home-page.component.html',
   styles: ``,
 })

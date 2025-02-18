@@ -41,8 +41,8 @@ export class RecentLinksComponent {
     },
     {
       id: 4,
-      name: 'about',
-      url: '/about',
+      name: 'some-stunning-project',
+      url: '/some-stunning-project',
       isVisible: true,
     },
     {
