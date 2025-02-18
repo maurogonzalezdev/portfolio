@@ -27,7 +27,8 @@ import {
 export class FullScreenComponent implements OnInit {
   private readonly FULLSCREEN_DELAY = 100;
   private _element!: HTMLElement;
-  private _isFullScreen = false;
+  private _isFullScreen: boolean = false;
+  private _isMobile: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
@@ -38,6 +39,7 @@ export class FullScreenComponent implements OnInit {
     if (isPlatformBrowser(this._platformId)) {
       this._element = this._document.documentElement;
       this._checkScreenMode();
+      this._checkMobileDevice();
     }
   }
 
@@ -76,6 +78,19 @@ export class FullScreenComponent implements OnInit {
   get getIsFullScreen(): boolean {
     return this._isFullScreen;
   }
+
+  // #region Check Mobile Device
+  private _checkMobileDevice(): void {
+    this._isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+  }
+
+  public shouldShowFullscreenButton(): boolean {
+    return !this._isMobile;
+  }
+  // #endregion
 
   // #region Fullscreen Behavior Functions
   private _checkScreenMode(): void {
