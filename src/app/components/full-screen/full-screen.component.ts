@@ -4,6 +4,7 @@ import {
   HostListener,
   Inject,
   OnInit,
+  OnDestroy,
   PLATFORM_ID,
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -11,6 +12,8 @@ import {
   heroArrowsPointingIn,
   heroArrowsPointingOut,
 } from '@ng-icons/heroicons/outline';
+import { IsMobileService } from '../../services/is-mobile.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-full-screen',
@@ -24,23 +27,62 @@ import {
   templateUrl: './full-screen.component.html',
   styles: ``,
 })
-export class FullScreenComponent implements OnInit {
+export class FullScreenComponent implements OnInit, OnDestroy {
   private readonly FULLSCREEN_DELAY = 100;
   private _element!: HTMLElement;
   private _isFullScreen: boolean = false;
   private _isMobile: boolean = false;
+  private destroy$ = new Subject<void>();
 
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
-    @Inject(PLATFORM_ID) private readonly _platformId: Object
+    @Inject(PLATFORM_ID) private readonly _platformId: Object,
+    private readonly _isMobileService: IsMobileService
   ) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this._platformId)) {
       this._element = this._document.documentElement;
       this._checkScreenMode();
-      this._checkMobileDevice();
+      this._setupMobileDetection();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private _setupMobileDetection(): void {
+    // Realizar la detección inicial
+    this._checkMobileDevice();
+
+    // Configurar detector de cambios de tamaño de ventana
+    window.addEventListener('resize', this._debouncedMobileCheck.bind(this));
+
+    // Suscribirse a los cambios del servicio
+    this._isMobileService.isMobile$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((isMobile: boolean) => {
+        this._isMobile = isMobile;
+      });
+  }
+
+  private _debouncedMobileCheck(): void {
+    clearTimeout(this._debounceTimer);
+    this._debounceTimer = setTimeout(() => {
+      this._checkMobileDevice();
+    }, 250);
+  }
+
+  private _debounceTimer: any;
+
+  private _checkMobileDevice(): void {
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    this._isMobileService.setMobile(isMobile);
   }
 
   // #region Fullscreen Listeners
@@ -80,12 +122,6 @@ export class FullScreenComponent implements OnInit {
   }
 
   // #region Check Mobile Device
-  private _checkMobileDevice(): void {
-    this._isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-  }
 
   public shouldShowFullscreenButton(): boolean {
     return !this._isMobile;
