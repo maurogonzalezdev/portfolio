@@ -1,4 +1,6 @@
-<main class="bg-red-500 w-full min-h-svh max-h-svh relative overflow-y-hidden overflow-x-hidden">
+<main
+  class="bg-red-500 w-full min-h-svh max-h-svh relative overflow-y-hidden overflow-x-hidden"
+>
   <!--Top ribbon-->
   <div class="absolute left-0 top-0 right-0">
     <app-ribbon-layout [setPosition]="'top'"></app-ribbon-layout>
@@ -20,8 +22,10 @@
       <router-outlet></router-outlet>
     </ng-scrollbar>
   </div>
+  @if(getIsMobile){
   <!--Bottom ribbon-->
   <div class="absolute left-0 right-0 bottom-0">
     <app-ribbon-layout [setPosition]="'bottom'"></app-ribbon-layout>
   </div>
+  }
 </main>

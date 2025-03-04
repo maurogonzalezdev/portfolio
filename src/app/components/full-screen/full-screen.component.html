@@ -1,4 +1,3 @@
-@if(shouldShowFullscreenButton()){
 <button
   (click)="toggleFullScreen()"
   class="flex flex-row justify-center items-center h-6 w-9 bg-red-900 cursor-pointer"
@@ -6,6 +5,3 @@
 >
   <ng-icon [name]="getIconName()" size="20" color="#fff"></ng-icon>
 </button>
-}@else {
-<span>mauro-gonzalez.dev</span>
-}
