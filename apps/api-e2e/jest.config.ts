@@ -15,4 +15,7 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/api-e2e',
+  moduleNameMapper: {
+    '@api/(.*)': '<rootDir>/../api/src/$1',
+  },
 };

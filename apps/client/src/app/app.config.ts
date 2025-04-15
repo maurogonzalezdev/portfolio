@@ -1,6 +1,6 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
+import { appRoutes } from '@client/app/app.routes';
 import {
   provideClientHydration,
   withEventReplay,

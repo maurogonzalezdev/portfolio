@@ -10,7 +10,10 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@client/*": ["../client/src/app/*"]
+    }
   },
   "include": [
     "**/*.ts",
