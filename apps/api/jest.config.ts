@@ -7,4 +7,7 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/api',
+  moduleNameMapper: {
+    '@api/(.*)': '<rootDir>/src/$1',
+  },
 };

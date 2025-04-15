@@ -24,6 +24,9 @@ export default [
           style: 'kebab-case',
         },
       ],
+      // Add these rules to support absolute imports
+      'import/no-unresolved': 'off',
+      'import/extensions': 'off',
     },
   },
   {
