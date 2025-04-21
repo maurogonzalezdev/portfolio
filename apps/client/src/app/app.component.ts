@@ -5,7 +5,7 @@ import {
   OnInit,
   PLATFORM_ID,
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -14,14 +14,9 @@ import { LoaderComponent } from '@client/app/shared/loader/loader.component';
 import { catchError, delay, filter, from, map, of } from 'rxjs';
 
 @Component({
-  imports: [RouterOutlet, LoaderComponent],
+  imports: [RouterOutlet, LoaderComponent, CommonModule],
   selector: 'app-root',
-  template: `
-    <router-outlet></router-outlet>
-    @if(isLoaderActive){
-    <shared-loader></shared-loader>
-    }
-  `,
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
   private readonly _destroyRef: DestroyRef = inject(DestroyRef);

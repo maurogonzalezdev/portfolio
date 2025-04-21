@@ -1,0 +1,40 @@
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  11% {
+    transform: translateY(4px) translateX(-3px) rotate(1deg);
+  }
+  23% {
+    transform: translateY(2px) translateX(2px) rotate(-0.5deg);
+  }
+  36% {
+    transform: translateY(6px) translateX(3px) rotate(1.5deg);
+  }
+  49% {
+    transform: translateY(3px) translateX(-4px) rotate(-0.8deg);
+  }
+  62% {
+    transform: translateY(1px) translateX(1px) rotate(0.7deg);
+  }
+  78% {
+    transform: translateY(5px) translateX(-2px) rotate(-1deg);
+  }
+  91% {
+    transform: translateY(2px) translateX(3px) rotate(0.3deg);
+  }
+}
+
+.floating-astronaut {
+  animation: float 15s ease-in-out infinite;
+  will-change: transform;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-astronaut {
+    animation: none;
+  }
+}
