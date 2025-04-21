@@ -1,0 +1,39 @@
+:host {
+  --hero-bg-color: #191919;
+  --hero-spacing: 0;
+  --hero-width: 100%;
+  --hero-height: 100%;
+
+  position: absolute;
+  inset: 0;
+  background-color: var(--hero-bg-color);
+  width: var(--hero-width);
+  height: var(--hero-height);
+  margin: var(--hero-spacing);
+  padding: var(--hero-spacing);
+  overflow: hidden;
+}
+
+.background-container {
+  position: relative;
+  will-change: transform;
+  box-sizing: border-box;
+  background-color: var(--hero-bg-color);
+  width: var(--hero-width);
+  height: var(--hero-height);
+  margin: var(--hero-spacing);
+  padding: var(--hero-spacing);
+}
+
+.svg-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  max-width: none;
+  max-height: none;
+  width: var(--hero-width);
+  height: var(--hero-height);
+  margin: var(--hero-spacing);
+  padding: var(--hero-spacing);
+}
