@@ -1,17 +1,10 @@
-import {
-  Component,
-  DestroyRef,
-  inject,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { LoaderComponent } from '@client/app/shared/loader/loader.component';
-
-import { catchError, delay, filter, from, map, of } from 'rxjs';
+import { LoaderService } from '@client/app/shared/services/loader.service';
 
 @Component({
   imports: [RouterOutlet, LoaderComponent, CommonModule],
@@ -20,37 +13,20 @@ import { catchError, delay, filter, from, map, of } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   private readonly _destroyRef: DestroyRef = inject(DestroyRef);
-  private readonly _document: Document = inject(DOCUMENT);
-  private readonly _platformId: Object = inject(PLATFORM_ID);
+  private readonly _loaderService: LoaderService = inject(LoaderService);
 
-  private _font: string = 'Manrope';
-  private _fontSize: string = '1rem';
-  private _isLoaderActive: boolean = true;
+  private _isLoaderVisible: boolean = true;
 
   ngOnInit(): void {
-    this._isLoaderActive = true;
-    // * Check if the custom font is loaded
-    if (isPlatformBrowser(this._platformId)) {
-      from(this._document.fonts.load(`${this._fontSize} "${this._font}"`))
-        .pipe(
-          takeUntilDestroyed(this._destroyRef),
-          delay(400),
-          map(() =>
-            this._document.fonts.check(`${this._fontSize} "${this._font}"`)
-          ),
-          filter(Boolean),
-          catchError((error: any) => {
-            console.error('Error loading font:', error);
-            return of(false);
-          })
-        )
-        .subscribe(() => {
-          this._isLoaderActive = false;
-        });
-    }
+    this._loaderService
+      .isLoaderVisible$()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((isVisible: boolean) => {
+        this._isLoaderVisible = isVisible;
+      });
   }
 
-  get isLoaderActive(): boolean {
-    return this._isLoaderActive;
+  get isLoaderVisible(): boolean {
+    return this._isLoaderVisible;
   }
 }

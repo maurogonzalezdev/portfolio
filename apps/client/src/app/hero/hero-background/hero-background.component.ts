@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 
+import { LoaderService } from '@client/app/shared/services/loader.service';
 import { Star } from '@client/app/hero/interfaces';
 import { StarGenerationService } from '@client/app/hero/services/star-generation.service';
 
@@ -39,6 +40,7 @@ export class HeroBackgroundComponent implements AfterViewInit, OnDestroy {
   private readonly _starService: StarGenerationService = inject(
     StarGenerationService
   );
+  private readonly _loaderService: LoaderService = inject(LoaderService);
 
   // Star configuration
   private readonly _starConfig: Star = {
@@ -80,6 +82,7 @@ export class HeroBackgroundComponent implements AfterViewInit, OnDestroy {
       this._timeoutId =
         this._document.defaultView?.setTimeout(() => {
           this.generatePartialStars(0.3);
+          this._loaderService.setHeroBackgroundLoaded(true);
 
           // Complete the rest after a brief delay
           this._document.defaultView?.setTimeout(() => {
