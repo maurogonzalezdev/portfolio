@@ -1,0 +1,14 @@
+<span
+  class="text-[#fff] hover:text-[#ccc] text-2xl font-semibold"
+  (click)="closeMenu()"
+>
+  @if(!link.fragment.startsWith('/')){
+  <a [routerLink]="[]" [fragment]="link.fragment" (click)="navigate()">
+    {{ link.name }}
+  </a>
+  }@else {
+  <a [routerLink]="link.fragment">
+    {{ link.name }}
+  </a>
+  }
+</span>
