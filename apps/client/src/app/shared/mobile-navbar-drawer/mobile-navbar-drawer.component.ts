@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { MobileNavbarIconComponent } from '@client/app/shared/mobile-navbar-icon/mobile-navbar-icon.component';
 import { MobileNavbarLinksComponent } from '@client/app/shared/mobile-navbar-links/mobile-navbar-links.component';
 import { NavbarService } from '@client/app/shared/services/navbar.service';
+import { ThemeSwitcherComponent } from '@client/app/shared/theme-switcher/theme-switcher.component';
 
 import { heroXMark } from '@ng-icons/heroicons/outline';
 
@@ -18,6 +19,7 @@ import { heroXMark } from '@ng-icons/heroicons/outline';
     MobileNavbarIconComponent,
     MobileNavbarLinksComponent,
     RouterLink,
+    ThemeSwitcherComponent,
   ],
   templateUrl: './mobile-navbar-drawer.component.html',
   animations: [
