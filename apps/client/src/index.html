@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  class="scroll-smooth font-(family-name:--font-manrope) text-base text-white bg-(--color-primary)"
+>
   <head>
     <meta charset="utf-8" />
     <title>client</title>
@@ -8,6 +11,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
+    <meta name="theme-color" content="#191919" />
+
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link
       rel="preload"
@@ -16,6 +21,25 @@
       type="font/woff2"
       crossorigin="anonymous"
     />
+    <script>
+      (function () {
+        const theme = localStorage.getItem('theme');
+
+        if ((theme !== 'purple' && theme !== 'dark') || !theme) {
+          document.documentElement.classList.toggle('dark', true);
+          localStorage.setItem('theme', 'dark');
+        } else if (theme === 'purple') {
+          const metaTag = document.querySelector('meta[name="theme-color"]');
+          if (metaTag) {
+            metaTag.setAttribute('content', '#17161f');
+          }
+
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.toggle('dark', true);
+        }
+      })();
+    </script>
   </head>
   <body>
     <app-root></app-root>

@@ -24,8 +24,13 @@ import { StarGenerationService } from '@client/app/hero/services/star-generation
   styleUrl: './hero-background.component.css',
 })
 export class HeroBackgroundComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('starsContainer')
-  private _starsContainer!: ElementRef<SVGGElement>;
+  private readonly _ngZone: NgZone = inject(NgZone);
+  private readonly _platformId: Object = inject(PLATFORM_ID);
+  private readonly _document: Document = inject(DOCUMENT);
+  private readonly _starService: StarGenerationService = inject(
+    StarGenerationService
+  );
+  private readonly _loaderService: LoaderService = inject(LoaderService);
 
   private _isBrowser: boolean;
   private _timeoutId: number | null = null;
@@ -34,13 +39,8 @@ export class HeroBackgroundComponent implements AfterViewInit, OnDestroy {
   private _twinkling = false;
   private _twinkleIntervalId: number | null = null;
 
-  private readonly _ngZone: NgZone = inject(NgZone);
-  private readonly _platformId: Object = inject(PLATFORM_ID);
-  private readonly _document: Document = inject(DOCUMENT);
-  private readonly _starService: StarGenerationService = inject(
-    StarGenerationService
-  );
-  private readonly _loaderService: LoaderService = inject(LoaderService);
+  @ViewChild('starsContainer')
+  private _starsContainer!: ElementRef<SVGGElement>;
 
   // Star configuration
   private readonly _starConfig: Star = {

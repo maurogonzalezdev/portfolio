@@ -33,23 +33,11 @@ export class MobileNavbarIconComponent {
   }
   private _size: number = 0;
 
-  @Input({ required: true })
-  set color(color: string) {
-    if (!color) return;
-
-    this._color = color;
-    return;
-  }
-  private _color: string = '';
-
   get icon(): string {
     return this._icon;
   }
   get size(): string {
     return String(this._size);
-  }
-  get color(): string {
-    return this._color;
   }
 
   public toggleMenu(): void {

@@ -8,22 +8,23 @@
 
 @import 'tailwindcss';
 
-html,
-:host {
-  font-family: 'Manrope', sans-serif;
-  font-size: 1rem;
+:root {
+  /* Font family for the app */
+  --font-manrope: 'Manrope', sans-serif;
+
+  /* Custom properties for light theme */
+  --color-primary: rgba(23, 22, 31, 1);
+  --color-secondary: rgba(30, 25, 49, 1);
+  --color-tertiary: rgba(62, 56, 88, 1);
+  --color-quaternary: rgba(64, 42, 116, 1);
+  --color-quinary: rgba(26, 16, 40, 1);
 }
 
-html,
-body {
-  background-color: #191919;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-}
-
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* Custom properties for dark theme */
+.dark {
+  --color-primary: rgba(25, 25, 25, 1);
+  --color-secondary: rgba(31, 31, 31, 1);
+  --color-tertiary: rgb(43, 43, 43);
+  --color-quaternary: rgba(33, 33, 33, 1);
+  --color-quinary: rgb(15, 15, 15);
 }

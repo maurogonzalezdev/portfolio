@@ -7,32 +7,34 @@
     preserveAspectRatio="xMidYMid slice"
     overflow="hidden"
     class="svg-background"
+    aria-hidden="true"
   >
     <defs>
       @for(star of starsColors; track star.id){
-        <filter [id]="star.id" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur [attr.stdDeviation]="star.blur" result="blur"></feGaussianBlur>
-          <feFlood [attr.flood-color]="star.color" [attr.flood-opacity]="star.opacity" result="glow"></feFlood>
-          <feComposite
+      <filter [id]="star.id" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur
+          [attr.stdDeviation]="star.blur"
+          result="blur"
+        ></feGaussianBlur>
+        <feFlood
+          [attr.flood-color]="star.color"
+          [attr.flood-opacity]="star.opacity"
+          result="glow"
+        ></feFlood>
+        <feComposite
           in="glow"
           in2="blur"
           operator="in"
           result="softGlow"
         ></feComposite>
         <feComposite
-        in="SourceGraphic"
-        in2="softGlow"
-        operator="over"
-      ></feComposite>
-        </filter>
+          in="SourceGraphic"
+          in2="softGlow"
+          operator="over"
+        ></feComposite>
+      </filter>
       }
-
-
-
     </defs>
-
-    <!-- Base background -->
-    <rect [attr.width]="svgWidth" [attr.height]="svgHeight" fill="#191919" />
 
     <!-- Stars container -->
     <g #starsContainer fill="none" fill-rule="evenodd"></g>

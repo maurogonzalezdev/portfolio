@@ -1,11 +1,11 @@
 <div
   (click)="toggleMenu()"
-  class="cursor-pointer rounded-md w-10 h-10 bg-[#232323] flex justify-center items-center leading-0"
+  class="cursor-pointer rounded-md w-10 h-10 bg-(--color-tertiary) flex justify-center items-center leading-0 hover:bg-(--color-secondary) transition-all duration-300 ease-in-out"
 >
   <ng-icon
     [svg]="icon"
     [size]="size"
-    [color]="color"
+    [color]="'#ffffff'"
     aria-label="Toggle navigation menu"
   ></ng-icon>
 </div>
