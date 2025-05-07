@@ -1,36 +1,14 @@
-:host {
-  --hero-spacing: 0;
-  --hero-width: 100%;
-  --hero-height: 100%;
-
-  position: absolute;
-  inset: 0;
-  width: var(--hero-width);
-  height: var(--hero-height);
-  margin: var(--hero-spacing);
-  padding: var(--hero-spacing);
-  overflow: hidden;
+.gradient-dark-mode {
+  background: linear-gradient(
+    160deg,
+    rgba(68, 52, 92, 0.6) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
 }
-
-.background-container {
-  position: relative;
-  will-change: transform;
-  box-sizing: border-box;
-  width: var(--hero-width);
-  height: var(--hero-height);
-  margin: var(--hero-spacing);
-  padding: var(--hero-spacing);
-}
-
-.svg-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  max-width: none;
-  max-height: none;
-  width: var(--hero-width);
-  height: var(--hero-height);
-  margin: var(--hero-spacing);
-  padding: var(--hero-spacing);
+.gradient-purple-mode {
+  background: linear-gradient(
+    160deg,
+    rgba(149, 79, 182, 0.6) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
 }

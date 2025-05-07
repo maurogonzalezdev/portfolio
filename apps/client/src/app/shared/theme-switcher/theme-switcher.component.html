@@ -1,1 +1,7 @@
-<h1 class="text-4xl" (click)="toggleTheme()">Toggle</h1>
+<div class="flex gap-6">
+  @for(button of getThemeButtons; track button.id){
+  <shared-theme-switcher-button
+    [setThemeButton]="button"
+  ></shared-theme-switcher-button>
+  }
+</div>

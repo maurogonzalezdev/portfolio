@@ -1,11 +1,11 @@
 <div
-  class="fixed top-0 w-full h-14 z-40 backdrop-blur-3xl flex items-center pl-9"
+  class="fixed top-0 w-full h-14 z-50 backdrop-blur-3xl flex items-center pl-9 md:pl-16"
 >
   <shared-mobile-navbar-icon
-    [icon]="openIcon"
-    [size]="32"
+    [setIcon]="getOpenIcon"
+    [setSize]="32"
   ></shared-mobile-navbar-icon>
 </div>
-@if (isOpen) {
+@if (getIsOpen) {
 <shared-mobile-navbar-drawer></shared-mobile-navbar-drawer>
 }

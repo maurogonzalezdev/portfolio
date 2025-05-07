@@ -1,19 +1,16 @@
 <section
   [@drawerAnimation]
-  class="fixed w-9/12 md:w-6/12 h-screen bg-(--color-primary) top-0 left-0 z-40 flex flex-col justify-start items-center gap-9 pr-6 pl-6 md:pr-14 md:pl-14 pt-2 shadow-[5px_0px_15px_rgba(0,0,0,0.3)] overflow-y-auto"
+  class="fixed w-9/12 md:w-6/12 h-screen bg-primary top-0 left-0 z-50 flex flex-col justify-start items-center gap-9 pr-6 pl-6 md:pr-14 md:pl-14 pt-2 shadow-[5px_0px_15px_rgba(0,0,0,0.3)] overflow-y-auto"
 >
   <div class="w-full flex flex-row justify-end">
     <shared-mobile-navbar-icon
-      [icon]="closeIcon"
-      [size]="32"
+      [setIcon]="getCloseIcon"
+      [setSize]="32"
     ></shared-mobile-navbar-icon>
   </div>
-  <div
-    class="w-44 md:w-52 mt-12 cursor-pointer"
-    [innerHTML]="imagotype"
-    [routerLink]="''"
-    (click)="reloadPage()"
-  ></div>
+  <div class="w-44 md:w-52 mt-12">
+    <shared-imagotype></shared-imagotype>
+  </div>
   <shared-mobile-navbar-links></shared-mobile-navbar-links>
   <shared-theme-switcher></shared-theme-switcher>
 </section>

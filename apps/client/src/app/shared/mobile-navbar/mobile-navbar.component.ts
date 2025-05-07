@@ -1,9 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { MobileNavbarIconComponent } from '@client/app/shared/mobile-navbar-icon/mobile-navbar-icon.component';
 import { MobileNavbarDrawerComponent } from '@client/app/shared/mobile-navbar-drawer/mobile-navbar-drawer.component';
+import { MobileNavbarIconComponent } from '@client/app/shared/mobile-navbar-icon/mobile-navbar-icon.component';
 import { NavbarService } from '@client/app/shared/services/navbar.service';
 
 import { heroBars3 } from '@ng-icons/heroicons/outline';
@@ -11,11 +10,7 @@ import { heroBars3 } from '@ng-icons/heroicons/outline';
 @Component({
   selector: 'shared-mobile-navbar',
   standalone: true,
-  imports: [
-    CommonModule,
-    MobileNavbarIconComponent,
-    MobileNavbarDrawerComponent,
-  ],
+  imports: [MobileNavbarDrawerComponent, MobileNavbarIconComponent],
   templateUrl: './mobile-navbar.component.html',
 })
 export class MobileNavbarComponent implements OnInit {
@@ -34,10 +29,10 @@ export class MobileNavbarComponent implements OnInit {
       });
   }
 
-  get openIcon(): string {
+  get getOpenIcon(): string {
     return this._openIcon;
   }
-  get isOpen(): boolean {
+  get getIsOpen(): boolean {
     return this._isOpen;
   }
 }

@@ -1,8 +1,8 @@
 <nav>
   <ul class="flex flex-col gap-7 text-center">
-    @for(link of navLinks; track link.id){
+    @for(link of getNavLinks; track link.id){
     <li>
-      <shared-mobile-navbar-link [link]="link"></shared-mobile-navbar-link>
+      <shared-mobile-navbar-link [setLink]="link"></shared-mobile-navbar-link>
     </li>
     }
   </ul>

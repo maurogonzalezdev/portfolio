@@ -27,7 +27,6 @@ export class LoaderService {
     new BehaviorSubject<boolean>(false);
   private _isFontLoaded$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
-
   private _font: string = 'Manrope';
   private _fontSize: string = '1rem';
 
@@ -38,7 +37,6 @@ export class LoaderService {
   public setHeroImageLoaded(isLoaded: boolean): void {
     this._isHeroImageLoaded$.next(isLoaded);
   }
-
   public setHeroBackgroundLoaded(isLoaded: boolean): void {
     this._isHeroBackgroundLoaded$.next(isLoaded);
   }
@@ -70,23 +68,21 @@ export class LoaderService {
     }
   }
 
-  get isHeroImageLoaded$() {
+  get getIsHeroImageLoaded$() {
     return this._isHeroImageLoaded$.asObservable();
   }
-
-  get isHeroBackgroundLoaded$() {
+  get getIsHeroBackgroundLoaded$() {
     return this._isHeroBackgroundLoaded$.asObservable();
   }
-
-  get isFontLoaded$() {
+  get getIsFontLoaded$() {
     return this._isFontLoaded$.asObservable();
   }
 
   public isLoaderVisible$(): Observable<boolean> {
     return combineLatest([
-      this.isHeroImageLoaded$,
-      this.isHeroBackgroundLoaded$,
-      this.isFontLoaded$,
+      this.getIsHeroImageLoaded$,
+      this.getIsHeroBackgroundLoaded$,
+      this.getIsFontLoaded$,
     ]).pipe(
       delay(300),
       map(([isImageLoaded, isBackgroundLoaded, isFontLoaded]) => {
@@ -94,7 +90,6 @@ export class LoaderService {
       })
     );
   }
-
   /**
    * Resets the loader state
    */
@@ -104,7 +99,6 @@ export class LoaderService {
     this._isFontLoaded$.next(false);
     this._loadFont(); // Retry loading the font
   }
-
   /**
    * Forces completion of all loads
    * Useful for testing

@@ -1,199 +1,97 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  inject,
-  NgZone,
-  OnDestroy,
   PLATFORM_ID,
+  inject,
+  OnInit,
   ViewChild,
 } from '@angular/core';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 import { LoaderService } from '@client/app/shared/services/loader.service';
-import { Star } from '@client/app/hero/interfaces';
-import { StarGenerationService } from '@client/app/hero/services/star-generation.service';
+import { ThemeSwitcherService } from '@client/app/shared/services/theme-switcher.service';
+import { Theme } from '@client/app/shared/types';
 
 @Component({
   selector: 'hero-background',
   standalone: true,
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './hero-background.component.html',
   styleUrl: './hero-background.component.css',
 })
-export class HeroBackgroundComponent implements AfterViewInit, OnDestroy {
-  private readonly _ngZone: NgZone = inject(NgZone);
-  private readonly _platformId: Object = inject(PLATFORM_ID);
-  private readonly _document: Document = inject(DOCUMENT);
-  private readonly _starService: StarGenerationService = inject(
-    StarGenerationService
-  );
+export class HeroBackgroundComponent implements OnInit, AfterViewInit {
+  @ViewChild('backgroundDiv', { static: true })
+  private _backgroundDiv?: HTMLDivElement;
+
   private readonly _loaderService: LoaderService = inject(LoaderService);
+  private readonly _isBrowser: boolean = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly _themeSwitcherService: ThemeSwitcherService =
+    inject(ThemeSwitcherService);
 
-  private _isBrowser: boolean;
-  private _timeoutId: number | null = null;
-  private _resizeInProgress = false;
-  private _containerCounter = 0;
-  private _twinkling = false;
-  private _twinkleIntervalId: number | null = null;
+  private _isDarkMode: boolean = false;
+  private readonly _imageUrls: string[] = [
+    '/images/starfield-640w.webp',
+    '/images/starfield-768w.webp',
+    '/images/starfield-1024w.webp',
+    '/images/starfield-1280w.webp',
+    '/images/starfield-1536w.webp',
+  ];
+  private _loadedImagesCount = 0;
 
-  @ViewChild('starsContainer')
-  private _starsContainer!: ElementRef<SVGGElement>;
+  ngOnInit(): void {
+    if (this._isBrowser) {
+      this._preloadAllImages();
+    }
 
-  // Star configuration
-  private readonly _starConfig: Star = {
-    count: 400,
-    size: 1.0,
-    sizeVariance: 0.9,
-    minOpacity: 0.5,
-    maxOpacity: 1.0,
-    glowPercentage: 0.3,
-    svgWidth: 2100,
-    svgHeight: 650,
-  };
-
-  get starsColors() {
-    return this._starService.starsColors;
-  }
-
-  get svgViewBox(): string {
-    return `0 0 ${this._starConfig.svgWidth} ${this._starConfig.svgHeight}`;
-  }
-
-  get svgWidth(): number {
-    return this._starConfig.svgWidth;
-  }
-
-  get svgHeight(): number {
-    return this._starConfig.svgHeight;
-  }
-
-  constructor() {
-    this._isBrowser = isPlatformBrowser(this._platformId);
-  }
-
-  ngAfterViewInit(): void {
-    if (!this._isBrowser) return;
-
-    this._ngZone.runOutsideAngular(() => {
-      // Generate 30% of stars immediately for quick visual feedback
-      this._timeoutId =
-        this._document.defaultView?.setTimeout(() => {
-          this.generatePartialStars(0.3);
-          this._loaderService.setHeroBackgroundLoaded(true);
-
-          // Complete the rest after a brief delay
-          this._document.defaultView?.setTimeout(() => {
-            this.generatePartialStars(1.0);
-            this.startTwinkling();
-          }, 200);
-        }, 0) || null;
+    this._themeSwitcherService.getTheme$().subscribe((theme: Theme) => {
+      if (theme === 'dark') {
+        this._isDarkMode = true;
+      }
+      if (theme === 'purple') {
+        this._isDarkMode = false;
+      }
     });
   }
 
-  ngOnDestroy(): void {
-    if (!this._isBrowser) return;
-
-    if (this._timeoutId !== null && this._document.defaultView) {
-      this._document.defaultView.clearTimeout(this._timeoutId);
-    }
-
-    if (this._twinkleIntervalId !== null && this._document.defaultView) {
-      this._document.defaultView.clearInterval(this._twinkleIntervalId);
-    }
-  }
-
-  /**
-   * Generates a partial or complete starfield based on percentage
-   * @param percentage Percentage of total stars to generate (0.0 to 1.0)
-   */
-  private generatePartialStars(percentage: number): void {
-    if (!this._isBrowser) return;
-
-    const starsGroup = this._starsContainer.nativeElement;
-
-    // Clear existing stars only on first run
-    if (percentage <= 0.3) {
-      this._starService.clearContainer(starsGroup);
-    }
-
-    // Create adjusted configuration
-    const partialConfig = { ...this._starConfig };
-
-    if (percentage < 1.0) {
-      partialConfig.count = Math.floor(this._starConfig.count * percentage);
-    }
-
-    // Generate stars with adjusted count
-    this._starService.generateStarsInContainer(starsGroup, partialConfig);
-  }
-
-  /**
-   * Starts the star twinkling effect
-   */
-  private startTwinkling(): void {
-    if (!this._isBrowser || this._twinkling || !this._document.defaultView)
-      return;
-
-    this._twinkling = true;
-    this._twinkleIntervalId = this._document.defaultView.setInterval(() => {
-      if (!this._resizeInProgress) {
-        this.twinkleStars();
+  ngAfterViewInit(): void {
+    if (this._backgroundDiv) {
+      if (
+        !this._isBrowser ||
+        this._loadedImagesCount === this._imageUrls.length
+      ) {
+        this._loaderService.setHeroBackgroundLoaded(true);
       }
-    }, 1800);
+    } else {
+      console.error('Background div not found!');
+    }
   }
 
-  /**
-   * Regenerates stars with a smooth transition for twinkling effect
-   */
-  private twinkleStars(): void {
-    if (!this._isBrowser || this._resizeInProgress) return;
+  private _preloadAllImages(): void {
+    this._imageUrls.forEach((url) => {
+      const img = new Image();
 
-    this._resizeInProgress = true;
+      img.onload = () => {
+        this._loadedImagesCount++;
 
-    const oldStarsContainer = this._starsContainer.nativeElement;
-    const svgElement = oldStarsContainer.parentElement;
+        if (this._loadedImagesCount === this._imageUrls.length) {
+          this._loaderService.setHeroBackgroundLoaded(true);
+        }
+      };
 
-    if (!svgElement) {
-      this._resizeInProgress = false;
-      return;
-    }
+      img.onerror = () => {
+        console.warn(`Failed to preload image: ${url}`);
+        this._loadedImagesCount++;
 
-    // Create and setup new container
-    const containerId = `stars-container-${++this._containerCounter}`;
-    const newStarsContainer =
-      this._starService.createNewStarsContainer(containerId);
-    svgElement.appendChild(newStarsContainer);
+        if (this._loadedImagesCount === this._imageUrls.length) {
+          this._loaderService.setHeroBackgroundLoaded(true);
+        }
+      };
 
-    // Generate new stars
-    this._starService.generateStarsInContainer(newStarsContainer);
-
-    // Animate transition between containers
-    this._starService.animateContainerTransition(
-      oldStarsContainer,
-      newStarsContainer,
-      () =>
-        this.finalizeContainerTransition(oldStarsContainer, newStarsContainer)
-    );
+      img.src = url;
+    });
   }
 
-  /**
-   * Finalizes the container transition by removing old container and updating reference
-   */
-  private finalizeContainerTransition(
-    oldContainer: SVGGElement,
-    newContainer: SVGGElement
-  ): void {
-    if (oldContainer.parentElement) {
-      oldContainer.parentElement.removeChild(oldContainer);
-    }
-
-    this._starsContainer = {
-      nativeElement: newContainer,
-    } as ElementRef<SVGGElement>;
-
-    this._resizeInProgress = false;
+  get getIsDarkMode(): boolean {
+    return this._isDarkMode;
   }
 }
