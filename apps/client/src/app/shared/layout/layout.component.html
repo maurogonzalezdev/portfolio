@@ -1,19 +1,93 @@
 <div class="flex flex-col lg:flex-row min-h-screen">
   <header
-    class="relative w-full lg:w-6/12 h-svh lg:fixed lg:top-0 lg:left-0 lg:bottom-0 z-10 overflow-hidden"
+    class="relative w-full h-svh min-h-[50vh] lg:h-svh lg:w-6/12 lg:fixed lg:top-0 lg:left-0 lg:bottom-0 z-10 overflow-hidden"
     id="home"
+    [changeUrl]="'home'"
   >
-    @if(breakpoint === 'sm' || breakpoint === 'md'){
+    @if(getBreakpoint === 'sm' || getBreakpoint === 'md'){
     <shared-mobile-navbar> </shared-mobile-navbar>
     } @else {
+    <shared-desktop-theme-switcher></shared-desktop-theme-switcher>
     <shared-desktop-navbar> </shared-desktop-navbar>
     }
     <hero-container></hero-container>
   </header>
-  <main class="w-full lg:w-6/12 lg:ml-auto h-dvh">
-    <section class="h-screen bg-(--color-secondary)" id="about-me"></section>
-    <section class="h-screen bg-amber-600" id="projects"></section>
-    <section class="h-screen bg-amber-500" id="skills"></section>
-    <section class="h-screen bg-amber-400" id="contact"></section>
+
+  <!-- Snap scrolling container -->
+  <main class="w-full lg:w-6/12 lg:ml-auto h-auto lg:h-dvh">
+    <!-- Desktop scroll -->
+    <div class="snap-y snap-mandatory overflow-y-auto h-auto lg:h-full">
+      <!-- Snap-center sections -->
+      <div class="snap-always snap-center">
+        <!-- About Me -->
+        <section
+          class="min-h-screen lg:h-screen w-full px-9 py-1 md:px-16 md:py-5 flex flex-col items-center justify-center bg-primary"
+          id="about-me"
+          [changeUrl]="'about-me'"
+        >
+          <section-about-me></section-about-me>
+          <shared-vertical-divider></shared-vertical-divider>
+          <shared-scroll-navigator
+            [setScrollTo]="'projects'"
+          ></shared-scroll-navigator>
+        </section>
+      </div>
+
+      <div class="snap-always snap-center">
+        <!-- Projects -->
+        <section
+          class="min-h-screen lg:h-screen w-full px-9 py-1 md:px-16 md:py-5 flex flex-col items-start justify-center bg-secondary"
+          id="projects"
+          [changeUrl]="'projects'"
+        >
+          <section-projects></section-projects>
+          <shared-scroll-navigator
+            class="self-center"
+            [setScrollTo]="'skills'"
+          ></shared-scroll-navigator>
+        </section>
+      </div>
+
+      <div class="snap-always snap-center">
+        <!-- Skills -->
+        <section
+          class="min-h-screen lg:h-screen w-full px-9 py-1 md:px-16 md:py-5 flex flex-col items-start justify-center bg-tertiary"
+          id="skills"
+          [changeUrl]="'skills'"
+        >
+          <section-skills></section-skills>
+          <shared-scroll-navigator
+            class="self-center"
+            [setScrollTo]="'last-posts'"
+          ></shared-scroll-navigator>
+        </section>
+      </div>
+
+      <div class="snap-always snap-center">
+        <!-- Last Posts -->
+        <section
+          class="min-h-screen lg:h-screen w-full px-9 py-1 md:px-16 md:py-5 flex flex-col items-start justify-center bg-quaternary"
+          id="last-posts"
+          [changeUrl]="'last-posts'"
+        >
+          <section-last-posts></section-last-posts>
+          <shared-scroll-navigator
+            class="self-center"
+            [setScrollTo]="'contact'"
+          ></shared-scroll-navigator>
+        </section>
+      </div>
+
+      <div class="snap-always snap-center">
+        <!-- Contact -->
+        <section
+          class="min-h-screen lg:h-screen w-full px-9 py-1 md:px-16 md:py-5 flex flex-col items-start justify-center bg-primary"
+          id="contact"
+          [changeUrl]="'contact'"
+        >
+          <section-contact></section-contact>
+        </section>
+      </div>
+    </div>
   </main>
 </div>

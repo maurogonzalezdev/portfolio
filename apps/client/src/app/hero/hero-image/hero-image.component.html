@@ -1,20 +1,9 @@
 <div class="relative">
-  <img
-    src="/images/hero-640w.webp"
-    srcset="
-      /images/hero-640w.webp   350w,
-      /images/hero-768w.webp   560w,
-      /images/hero-1024w.webp  845w,
-      /images/hero-1536w.webp 1080w
-    "
-    sizes="(max-width: 767px) 640px,
-           (max-width: 1023px) 768px,
-           (max-width: 1535px) 1024px,
-           (min-width: 1536px) 1536px"
-    alt="An astronaut floating in space."
-    class="floating-astronaut -bottom-2.5 md:bottom-0 lg:bottom-2 landscape:-mb-0 md:landscape:-mb-0 lg:landscape:-mb-4"
-    loading="eager"
-    fetchpriority="high"
-    (load)="imageLoaded()"
-  />
+  <div
+    #heroImage
+    class="floating-astronaut bg-no-repeat bg-center bg-cover -mb-2 bg-[url(/images/hero-640w.webp)] md:bg-[url(/images/hero-768w.webp)] lg:bg-[url(/images/hero-1024w.webp)] xl:bg-[url(/images/hero-1280w.webp)] 2xl:bg-[url(/images/hero-1536w.webp)] w-[350px] h-[336px] md:w-[505px] md:h-[485px] lg:w-[561px] lg:h-[540px] xl:w-[634px] xl:h-[610px] 2xl:w-[756px] 2xl:h-[728px]"
+    [ngStyle]="getLandscapeStyle()"
+    role="img"
+    aria-label="An astronaut floating in space."
+  ></div>
 </div>

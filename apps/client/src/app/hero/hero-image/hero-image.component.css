@@ -1,5 +1,6 @@
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) rotate(0deg);
   }
   11% {
@@ -31,6 +32,22 @@
   transform-origin: center bottom;
   backface-visibility: hidden;
   perspective: 1000px;
+
+  /* 2K */
+  @media (width >= 2048px) {
+    @media (orientation: landscape) {
+      width: 878px;
+      height: 845px;
+    }
+  }
+
+  /* 4K */
+  @media (width >= 3840px) {
+    @media (orientation: landscape) {
+      width: 1736px;
+      height: 1670px;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

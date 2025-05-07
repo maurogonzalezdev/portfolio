@@ -1,0 +1,19 @@
+<button
+  class="w-12 h-12 4k:w-20 4k:h-20 rounded-full flex justify-center items-center transition-all duration-180 ease-in-out"
+  [style]="getButtonStyle()"
+  [disabled]="getThemeButton.isActive"
+  [ngClass]="
+    getThemeButton.isActive
+      ? 'cursor-default saturate-200 scale-110'
+      : 'cursor-pointer hover:scale-110 hover:saturate-200 opacity-85 hover:opacity-100'
+  "
+  (click)="toggleTheme()"
+>
+  <span class="w-7 absolute">
+    @if(getThemeButton.name==='dark'){
+    <shared-theme-dark-icon></shared-theme-dark-icon>
+    }@else{
+    <shared-theme-purple-icon></shared-theme-purple-icon>
+    }
+  </span>
+</button>

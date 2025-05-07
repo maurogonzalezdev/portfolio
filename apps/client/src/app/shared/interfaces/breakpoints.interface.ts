@@ -4,4 +4,6 @@ export interface Breakpoints {
   lg: string;
   xl: string;
   xxl: string;
+  twoK: string;
+  fourK: string;
 }

@@ -1,14 +1,14 @@
 <span
-  class="hover:text-gray-300 text-2xl font-semibold"
+  class="hover:text-gray-300 text-xl uppercase tracking-wide"
   (click)="closeMenu()"
 >
-  @if(!link.fragment.startsWith('/')){
-  <a [routerLink]="[]" [fragment]="link.fragment" (click)="navigate()">
-    {{ link.name }}
+  @if(!getLink.fragment.startsWith('/')){
+  <a [routerLink]="[]" [fragment]="getLink.fragment" (click)="navigate()">
+    {{ getLink.name }}
   </a>
   }@else {
-  <a [routerLink]="link.fragment">
-    {{ link.name }}
+  <a [routerLink]="getLink.fragment">
+    {{ getLink.name }}
   </a>
   }
 </span>

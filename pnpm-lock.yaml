@@ -56,6 +56,12 @@ importers:
       '@ng-icons/heroicons':
         specifier: ^31.3.0
         version: 31.3.0
+      '@ng-icons/huge-icons':
+        specifier: ^31.3.0
+        version: 31.3.0
+      '@ng-icons/svgl':
+        specifier: ^31.3.0
+        version: 31.3.0
       '@tailwindcss/postcss':
         specifier: ^4.1.4
         version: 4.1.4
@@ -2206,6 +2212,12 @@ packages:
 
   '@ng-icons/heroicons@31.3.0':
     resolution: {integrity: sha512-tHYbohGKRY4JC+AhCyq4aU5F19yfCgYQ+sxLAzks+SNXkB0sfjz8i8y7jX8pPg8le1GS8HfXpYSiYcRbdCpe+A==}
+
+  '@ng-icons/huge-icons@31.3.0':
+    resolution: {integrity: sha512-oRFgqX0+cCI2FpBpKqEoFHttD4Z25qnGNt/SJPy7GPy/NcN+Os1Xa50j9rGZJAY4RIqDejuR0yWfJwkcuvv0qg==}
+
+  '@ng-icons/svgl@31.3.0':
+    resolution: {integrity: sha512-GCNJWRXyRY6J65tnNl6RU/kkN6JdgTV2j3o8RNvt6+2/Xcx70/eK5xU7+zmkq0Gk0y4QqziiPHbgOtDETWXpnQ==}
 
   '@ngtools/webpack@19.2.7':
     resolution: {integrity: sha512-dUdalMLy6oNrrDQNOQMrfOZaFdvqNW/z8Z3EhtWySc2CiD/yjIqYwWi51o/SuDqBIglNa5BSrxHFfpAXl12r6w==}
@@ -10069,6 +10081,14 @@ snapshots:
       tslib: 2.8.1
 
   '@ng-icons/heroicons@31.3.0':
+    dependencies:
+      tslib: 2.8.1
+
+  '@ng-icons/huge-icons@31.3.0':
+    dependencies:
+      tslib: 2.8.1
+
+  '@ng-icons/svgl@31.3.0':
     dependencies:
       tslib: 2.8.1
 

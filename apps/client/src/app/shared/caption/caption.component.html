@@ -1,0 +1,10 @@
+<h4
+  class="mb-2 md:mt-2.5 text-2xl 2k:text-4xl font-semibold text-white"
+  [ngClass]="{
+    'ml-3 text-left': getAlignment === 'left',
+    'ml-3 text-right': getAlignment === 'right',
+    'ml-3 text-center': getAlignment === 'center'
+  }"
+>
+  {{ getCaption }}
+</h4>

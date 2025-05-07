@@ -11,7 +11,6 @@ export class NavbarService {
   private _isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-
   private _navLinks: NavLinks = [
     {
       home: {
@@ -42,29 +41,28 @@ export class NavbarService {
       },
     },
     {
+      lastPosts: {
+        id: 6,
+        name: 'Last Posts',
+        fragment: 'last-posts',
+      },
+    },
+    {
       contact: {
         id: 5,
         name: 'Contact',
         fragment: 'contact',
       },
     },
-    {
-      blog: {
-        id: 6,
-        name: 'Blog',
-        fragment: '/blog',
-      },
-    },
   ];
 
-  get navLinks(): NavLinks {
+  get getNavLinks(): NavLinks {
     return this._navLinks;
   }
 
   public toggleIsOpen() {
     this._isOpen$.next(!this._isOpen$.value);
   }
-
   public getIsOpen$(): Observable<boolean> {
     return this._isOpen$.asObservable().pipe(distinctUntilChanged());
   }

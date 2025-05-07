@@ -25,7 +25,6 @@ export class ThemeSwitcherService {
 
     this._theme$.next(savedTheme);
   }
-
   private _applyTheme(theme: Theme): void {
     const metaTag = document.querySelector('meta[name="theme-color"]');
 
@@ -47,11 +46,9 @@ export class ThemeSwitcherService {
     this._theme$.next(theme);
     return;
   }
-
   public getTheme$(): Observable<Theme> {
     return this._theme$.asObservable();
   }
-
   public toggleTheme(): void {
     const currentTheme: Theme = this._theme$.getValue();
     const newTheme: Theme = currentTheme === 'dark' ? 'purple' : 'dark';

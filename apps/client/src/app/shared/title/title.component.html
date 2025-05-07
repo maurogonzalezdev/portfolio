@@ -1,0 +1,44 @@
+<div
+  class="w-full mb-1 md:mb-4 flex flex-col gap-3"
+  [ngClass]="{
+    'items-start justify-start': getAlignment === 'left',
+    'items-end justify-end': getAlignment === 'right',
+    'items-center justify-center': getAlignment === 'center'
+  }"
+>
+  <div
+    class="flex items-start w-full gap-1"
+    [ngClass]="{
+      'justify-start': getAlignment === 'left',
+      'justify-end': getAlignment === 'right',
+      'justify-center': getAlignment === 'center'
+    }"
+  >
+    <shared-title-icon
+      [setColor]="getColor"
+      [setIcon]="getIcon"
+      class="-mt-2"
+    ></shared-title-icon>
+    <h2
+      class="mb-3.5 text-4xl md:text-6xl 2k:text-7xl 4k:text-[10rem] font-extrabold uppercase tracking-wide text-white"
+      [ngClass]="{
+        'ml-3 text-left': getAlignment === 'left',
+        'ml-3 text-right': getAlignment === 'right',
+        'ml-3 text-center': getAlignment === 'center'
+      }"
+    >
+      {{ getTitle }}
+    </h2>
+  </div>
+  <h3
+    class="text-base 2k:text-3xl 4k:text-4xl text-accent lowercase font-bold -mt-8 md:-mt-9 mb-0.5 italic w-full"
+    [ngClass]="{
+      'text-left': getAlignment === 'left',
+      'pl-12': getAlignment === 'left',
+      'text-right': getAlignment === 'right',
+      'text-center': getAlignment === 'center'
+    }"
+  >
+    {{ getSubtitle }}
+  </h3>
+</div>
