@@ -21,12 +21,13 @@
       type="font/woff2"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://ik.imagekit.io" />
     <script>
-      (function () {
+      document.addEventListener('DOMContentLoaded', () => {
         const theme = localStorage.getItem('theme');
 
         if ((theme !== 'purple' && theme !== 'dark') || !theme) {
-          document.documentElement.classList.toggle('dark', true);
+          document.documentElement.classList.remove('purple', true);
           localStorage.setItem('theme', 'dark');
         } else if (theme === 'purple') {
           const metaTag = document.querySelector('meta[name="theme-color"]');
@@ -34,14 +35,17 @@
             metaTag.setAttribute('content', '#17161f');
           }
 
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.toggle('purple', true);
         } else {
-          document.documentElement.classList.toggle('dark', true);
+          document.documentElement.classList.remove('purple', true);
         }
-      })();
+      });
     </script>
   </head>
   <body>
+    <div class="loader" id="loader">
+      <div class="circle-loader"></div>
+    </div>
     <app-root></app-root>
   </body>
 </html>

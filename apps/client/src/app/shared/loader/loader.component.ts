@@ -5,5 +5,6 @@ import { NgOptimizedImage } from '@angular/common';
   selector: 'shared-loader',
   imports: [NgOptimizedImage],
   templateUrl: './loader.component.html',
+  styleUrl: './loader.component.css',
 })
 export class LoaderComponent {}

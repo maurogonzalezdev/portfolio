@@ -41,10 +41,10 @@ export class NavbarService {
       },
     },
     {
-      lastPosts: {
+      posts: {
         id: 6,
-        name: 'Last Posts',
-        fragment: 'last-posts',
+        name: 'Posts',
+        fragment: 'posts',
       },
     },
     {

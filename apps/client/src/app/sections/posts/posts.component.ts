@@ -7,13 +7,13 @@ import { TitleComponent } from '@client/app/shared/title/title.component';
 import { heroDocumentTextSolid } from '@ng-icons/heroicons/solid';
 
 @Component({
-  selector: 'section-last-posts',
+  selector: 'section-posts',
   standalone: true,
   imports: [TitleComponent, LastPostComponent],
-  templateUrl: './last-posts.component.html',
-  styleUrl: './last-posts.component.css',
+  templateUrl: './posts.component.html',
+  styleUrl: './posts.component.css',
 })
-export class LastPostsComponent {
+export class PostsComponent {
   private _lastPostsIcon: string = heroDocumentTextSolid;
   private _lastPosts: LastPost[] = [
     {

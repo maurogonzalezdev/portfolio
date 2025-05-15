@@ -1,0 +1,42 @@
+@keyframes scrollDotAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.scroll-indicator {
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  width: 30px;
+  height: 46px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-indicator-dot {
+  fill: #ffffff;
+  animation: scrollDotAnimation 1.5s infinite;
+}
+
+.scroll-indicator-dot:nth-child(2) {
+  animation-delay: 0.75s;
+}
+
+.scroll-indicator:hover {
+  border-color: var(--color-gray);
+}
+
+.scroll-indicator:hover .scroll-indicator-dot {
+  fill: var(--color-gray);
+}

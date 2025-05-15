@@ -7,5 +7,6 @@ import { ThemeSwitcherComponent } from '@client/app/shared/theme-switcher/theme-
   standalone: true,
   imports: [ThemeSwitcherComponent],
   templateUrl: './desktop-theme-switcher.component.html',
+  styleUrl: './desktop-theme-switcher.component.css',
 })
 export class DesktopThemeSwitcherComponent {}

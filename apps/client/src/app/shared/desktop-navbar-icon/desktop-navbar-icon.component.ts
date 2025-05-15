@@ -4,11 +4,12 @@ import { Breakpoint } from '@client/app/shared/types';
 import { BreakpointObserverService } from '@client/app/shared/services/breakpoint-observer.service';
 
 import { NgIcon } from '@ng-icons/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'shared-desktop-navbar-icon',
   standalone: true,
-  imports: [NgIcon],
+  imports: [CommonModule, NgIcon],
   templateUrl: './desktop-navbar-icon.component.html',
 })
 export class DesktopNavbarIconComponent implements OnInit {

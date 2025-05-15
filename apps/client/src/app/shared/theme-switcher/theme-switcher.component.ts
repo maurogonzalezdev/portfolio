@@ -1,10 +1,12 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, PLATFORM_ID } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { Theme } from '@client/app/shared/types';
 import { ThemeButton, ThemeButtonItem } from '@client/app/shared/interfaces';
 import { ThemeSwitcherButtonComponent } from '@client/app/shared/theme-switcher-button/theme-switcher-button.component';
 import { ThemeSwitcherService } from '@client/app/shared/services/theme-switcher.service';
+import { distinctUntilChanged, skip, startWith } from 'rxjs';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'shared-theme-switcher',
@@ -16,6 +18,7 @@ export class ThemeSwitcherComponent {
   private readonly _themeSwitcherService: ThemeSwitcherService =
     inject(ThemeSwitcherService);
   private readonly _destroyRef: DestroyRef = inject(DestroyRef);
+  private readonly _platformId: Object = inject(PLATFORM_ID);
 
   private _themeButtons: ThemeButtonItem[] = [
     {

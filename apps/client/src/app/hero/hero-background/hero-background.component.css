@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .gradient-dark-mode {
   background: linear-gradient(
     160deg,
@@ -11,4 +20,81 @@
     rgba(149, 79, 182, 0.6) 0%,
     rgba(0, 0, 0, 0) 50%
   );
+}
+
+canvas {
+  opacity: 0;
+}
+
+.nebula-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 1;
+  animation: none;
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.nebula-1 {
+  width: 70%;
+  height: 45%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(195, 248, 255, 0.2) 15%,
+    rgba(230, 202, 255, 0.15) 35%,
+    rgba(64, 224, 208, 0.05) 55%,
+    rgba(148, 0, 211, 0.05) 75%,
+    transparent 90%
+  );
+  top: 15%;
+  left: 10%;
+  transform: rotate(-15deg);
+}
+
+.nebula-2 {
+  width: 65%;
+  height: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(245, 240, 255, 0.2) 0%,
+    rgba(200, 246, 247, 0.15) 25%,
+    rgba(186, 85, 211, 0.1) 45%,
+    rgba(72, 209, 204, 0.05) 65%,
+    rgba(153, 102, 204, 0.025) 80%,
+    transparent 95%
+  );
+  bottom: 20%;
+  right: 10%;
+  transform: rotate(20deg);
+}
+
+.nebula-3 {
+  width: 75%;
+  height: 40%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(180, 180, 250, 0.15) 20%,
+    rgba(0, 191, 255, 0.1) 40%,
+    rgba(147, 112, 219, 0.05) 60%,
+    rgba(0, 206, 209, 0.05) 75%,
+    rgba(128, 0, 128, 0.03) 85%,
+    transparent 95%
+  );
+  top: 40%;
+  left: 20%;
+  transform: rotate(10deg);
+}
+
+@media (prefers-reduced-motion) {
+  .nebula-container {
+    animation: none;
+    opacity: 1;
+  }
 }
