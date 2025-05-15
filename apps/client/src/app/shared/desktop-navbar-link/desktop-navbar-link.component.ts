@@ -63,7 +63,7 @@ export class DesktopNavbarLinkComponent {
     if (this._link.name.toLowerCase() === 'contact') {
       return heroEnvelopeSolid;
     }
-    if (this._link.name.toLowerCase() === 'last posts') {
+    if (this._link.name.toLowerCase() === 'posts') {
       return heroDocumentTextSolid;
     }
     return '';

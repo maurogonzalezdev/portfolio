@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
@@ -20,14 +19,7 @@ import { heroXMark } from '@ng-icons/heroicons/outline';
     ThemeSwitcherComponent,
   ],
   templateUrl: './mobile-navbar-drawer.component.html',
-  animations: [
-    trigger('drawerAnimation', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('300ms ease-in', style({ transform: 'translateX(0)' })),
-      ]),
-    ]),
-  ],
+  styleUrl: './mobile-navbar-drawer.component.css',
 })
 export class MobileNavbarDrawerComponent {
   @HostListener('document:click', ['$event'])

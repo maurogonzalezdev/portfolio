@@ -1,5 +1,4 @@
 @keyframes float {
-  0%,
   100% {
     transform: translateY(0px) translateX(0px) rotate(0deg);
   }
@@ -26,28 +25,30 @@
   }
 }
 
+/* Window resize transitions */
+:host {
+  --transition-width-duration: 0ms;
+  --transition-height-duration: 0ms;
+  --transition-timing-function: ease-in-out;
+
+  margin-bottom: -4px;
+}
+
+:host,
+:host::before,
+:host::after {
+  transition: width var(--transition-width-duration)
+      var(--transition-timing-function),
+    height var(--transition-height-duration) var(--transition-timing-function),
+    transform var(--transition-width-duration) var(--transition-timing-function);
+}
+
 .floating-astronaut {
   animation: float 15s ease-in-out infinite;
   will-change: transform;
   transform-origin: center bottom;
   backface-visibility: hidden;
   perspective: 1000px;
-
-  /* 2K */
-  @media (width >= 2048px) {
-    @media (orientation: landscape) {
-      width: 878px;
-      height: 845px;
-    }
-  }
-
-  /* 4K */
-  @media (width >= 3840px) {
-    @media (orientation: landscape) {
-      width: 1736px;
-      height: 1670px;
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

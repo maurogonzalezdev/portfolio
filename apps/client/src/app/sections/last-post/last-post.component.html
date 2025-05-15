@@ -1,9 +1,9 @@
 <article
   [ngStyle]="getArticleStyle()"
-  class="transition-all duration-300 ease-in-out w-full h-32 md:h-48 bg-cover bg-center bg-no-repeat relative border border-dark-gray rounded-tr-4xl hover:bg-size-[130%]"
+  class="transition-all duration-300 ease-in-out w-full h-32 md:h-44 bg-cover bg-center bg-no-repeat relative border border-dark-gray rounded-tr-4xl hover:bg-size-[130%]"
 >
   <h5
-    class="z-20 relative mt-2 lg:mt-4 p-1.5 text-center text-shadow-2xs font-semibold text-sm md:text-xl 4k:text-2xl tracking-wide"
+    class="z-20 relative mt-2 lg:mt-2.5 p-1.5 text-center text-shadow-2xs font-semibold text-sm md:text-xl 4k:text-2xl tracking-wide"
   >
     {{ getLastPost.title }}
   </h5>
@@ -14,7 +14,7 @@
     {{ getLastPost.description }}
   </p>
   <ul
-    class="z-20 relative w-3/6 flex justify-evenly m-auto mt-1 lg:mt-3 bg-accent"
+    class="z-20 relative w-3/6 flex justify-evenly m-auto mt-1 lg:mt-1.5 bg-accent"
   >
     @for(tag of getLastPost.tags; track tag){
     <li>
@@ -23,7 +23,7 @@
     }
   </ul>
   @if(getBreakpoint!=='sm'){
-  <footer class="z-20 relative text-center mt-1 italic 2k:text-xl">
+  <footer class="z-20 relative text-center italic 2k:text-xl">
     <p>Creation date: {{ getLastPost.creationDate }}</p>
   </footer>
   }

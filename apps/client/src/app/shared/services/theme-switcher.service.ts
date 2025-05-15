@@ -1,57 +1,64 @@
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 import { Theme } from '@client/app/shared/types';
-
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeSwitcherService {
+  private readonly _document: Document = inject(DOCUMENT);
   private readonly _platformId: Object = inject(PLATFORM_ID);
 
   private _theme$: BehaviorSubject<Theme> = new BehaviorSubject<Theme>('dark');
 
   constructor() {
-    if (isPlatformBrowser(this._platformId)) {
-      // Init theme on client side
-      this._initTheme();
+    if (!isPlatformServer(this._platformId)) {
+      this._theme$.next(this._getThemeFromLocalStorage());
+      const loader = this._document.getElementById('loader');
+      loader!.remove();
     }
   }
 
-  private _initTheme(): void {
-    const savedTheme: Theme = localStorage.getItem('theme') as Theme;
-
-    this._theme$.next(savedTheme);
+  public getTheme$(): Observable<Theme> {
+    return this._theme$.asObservable().pipe(distinctUntilChanged());
   }
-  private _applyTheme(theme: Theme): void {
-    const metaTag = document.querySelector('meta[name="theme-color"]');
 
-    if (theme === 'purple') {
-      if (metaTag) {
-        metaTag.setAttribute('content', '#17161f');
-      }
+  private _getThemeFromLocalStorage(): Theme {
+    return localStorage.getItem('theme') as Theme;
+  }
 
-      document.documentElement.classList.remove('dark');
-    } else {
-      if (metaTag) {
-        metaTag.setAttribute('content', '#191919');
-      }
-
-      document.documentElement.classList.toggle('dark', true);
+  private _setTheme(
+    newTheme: Theme,
+    metaThemeColor: HTMLMetaElement | Element,
+    document: Document
+  ): void {
+    if (newTheme === 'dark' || newTheme !== 'purple') {
+      metaThemeColor.setAttribute('content', '#191919');
+      document.documentElement.classList.remove('purple');
+      return;
     }
 
-    localStorage.setItem('theme', theme);
-    this._theme$.next(theme);
+    metaThemeColor.setAttribute('content', '#17161F');
+    document.documentElement.classList.toggle('purple', true);
     return;
   }
-  public getTheme$(): Observable<Theme> {
-    return this._theme$.asObservable();
-  }
+
   public toggleTheme(): void {
-    const currentTheme: Theme = this._theme$.getValue();
-    const newTheme: Theme = currentTheme === 'dark' ? 'purple' : 'dark';
-    this._applyTheme(newTheme);
+    const metaThemeColor = this._document.querySelector(
+      'meta[name="theme-color"]'
+    );
+
+    const newTheme: Theme =
+      this._getThemeFromLocalStorage() === 'dark' ? 'purple' : 'dark';
+
+    this._theme$.next(newTheme);
+
+    if (metaThemeColor) {
+      this._setTheme(newTheme, metaThemeColor, this._document);
+    }
+
+    localStorage.setItem('theme', newTheme);
   }
 }

@@ -1,8 +1,10 @@
 <div
-  class="w-full h-full absolute opacity-30"
+  class="w-full h-full absolute opacity-30 z-[50]"
   [ngClass]="getIsDarkMode ? 'gradient-dark-mode' : 'gradient-purple-mode'"
 ></div>
-<div
-  class="relative w-full h-full pointer-events-none bg-[url(/images/starfield-640w.webp)] md:bg-[url(/images/starfield-768w.webp)] lg:bg-[url(/images/starfield-1024w.webp)] xl:bg-[url(/images/starfield-1280w.webp)] 2xl:bg-[url(/images/starfield-1536w.webp)] bg-auto bg-repeat"
-  #backgroundDiv
-></div>
+<div class="nebula-container z-50">
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+  <div class="nebula nebula-3"></div>
+</div>
+<canvas #canvas class="absolute overflow-hidden"></canvas>

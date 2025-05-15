@@ -1,0 +1,8 @@
+.loader {
+  background: radial-gradient(
+    circle,
+    rgba(50, 43, 61, 1) 0%,
+    rgba(36, 33, 43, 1) 50%,
+    rgba(31, 31, 31, 1) 100%
+  );
+}
