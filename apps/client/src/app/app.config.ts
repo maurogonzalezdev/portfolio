@@ -9,11 +9,11 @@ import { provideImageKitLoader } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideClientHydration(withEventReplay()),
+    provideClientHydration(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideImageKitLoader(
-      'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-70'
+      'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-90'
     ),
   ],
 };

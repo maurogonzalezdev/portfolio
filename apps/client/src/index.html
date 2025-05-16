@@ -27,7 +27,7 @@
         const theme = localStorage.getItem('theme');
 
         if ((theme !== 'purple' && theme !== 'dark') || !theme) {
-          document.documentElement.classList.remove('purple', true);
+          document.documentElement.classList.remove('purple');
           localStorage.setItem('theme', 'dark');
         } else if (theme === 'purple') {
           const metaTag = document.querySelector('meta[name="theme-color"]');
@@ -37,7 +37,7 @@
 
           document.documentElement.classList.toggle('purple', true);
         } else {
-          document.documentElement.classList.remove('purple', true);
+          document.documentElement.classList.remove('purple');
         }
       });
     </script>

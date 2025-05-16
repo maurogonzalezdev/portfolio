@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { NavLinks } from '@client/app/shared/types';
+import { NavLinks, OptionLinks } from '@client/app/shared/types';
 
 import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 
@@ -55,9 +55,35 @@ export class NavbarService {
       },
     },
   ];
+  private _optionLinks: OptionLinks = [
+    {
+      downloadResume: {
+        id: 1,
+        name: 'Download Resume',
+        url: 'https://drive.usercontent.google.com/uc?id=1Dar9fgvWvijhHlek8J-YylfEgCtxIVIu&export=download',
+      },
+    },
+    {
+      blog: {
+        id: 2,
+        name: 'Blog',
+        url: '/blog',
+      },
+    },
+    {
+      github: {
+        id: 3,
+        name: 'Github',
+        url: 'https://github.com/maurogonzalezdev',
+      },
+    },
+  ];
 
   get getNavLinks(): NavLinks {
     return this._navLinks;
+  }
+  get getOptionLinks(): OptionLinks {
+    return this._optionLinks;
   }
 
   public toggleIsOpen() {
