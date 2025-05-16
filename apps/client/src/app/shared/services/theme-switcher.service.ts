@@ -26,7 +26,7 @@ export class ThemeSwitcherService {
   }
 
   private _getThemeFromLocalStorage(): Theme {
-    return localStorage.getItem('theme') as Theme;
+    return (localStorage.getItem('theme') as Theme) || 'dark';
   }
 
   private _setTheme(
@@ -34,7 +34,7 @@ export class ThemeSwitcherService {
     metaThemeColor: HTMLMetaElement | Element,
     document: Document
   ): void {
-    if (newTheme === 'dark' || newTheme !== 'purple') {
+    if (newTheme === 'dark') {
       metaThemeColor.setAttribute('content', '#191919');
       document.documentElement.classList.remove('purple');
       return;

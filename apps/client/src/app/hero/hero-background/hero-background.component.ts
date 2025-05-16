@@ -216,7 +216,7 @@ export class HeroBackgroundComponent
 
       // Load aditional stars progressively
       if (!isLowEndDevice) {
-        setTimeout(() => this._progressivelyAddStars(), 2000);
+        setTimeout(() => this._progressivelyAddStars(), 1000);
       }
     } else {
       // Desktop devices
@@ -224,7 +224,7 @@ export class HeroBackgroundComponent
       this._planetCount = this._originalPlanetCount;
 
       // Adds stars progressively to avoid blocking the main thread
-      setTimeout(() => this._progressivelyAddStars(), 1500);
+      setTimeout(() => this._progressivelyAddStars(), 1200);
     }
   }
 
@@ -234,7 +234,7 @@ export class HeroBackgroundComponent
   private _progressivelyAddStars(): void {
     if (!this._isCanvasInitialized) return;
 
-    const targetCount = this._isDesktopView ? 1100 : 200;
+    const targetCount = this._isDesktopView ? 1200 : 250;
     const currentCount = this._starCount;
     const delta = targetCount - currentCount;
 

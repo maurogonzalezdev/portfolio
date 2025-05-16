@@ -460,19 +460,19 @@ export class StarAnimationService {
       | 'exotic'
   ): number {
     if (type === 'ringed') {
-      return (Math.random() * 6 + 8) * this._sizeFactor;
+      return (Math.random() * 8 + 10) * this._sizeFactor;
     } else if (type === 'gaseous') {
-      return (Math.random() * 5 + 6) * this._sizeFactor;
+      return (Math.random() * 7 + 8) * this._sizeFactor;
     } else if (type === 'terrestrial') {
-      return (Math.random() * 4 + 5) * this._sizeFactor;
+      return (Math.random() * 6 + 7) * this._sizeFactor;
     } else if (type === 'ice') {
-      return (Math.random() * 4.5 + 4.5) * this._sizeFactor;
+      return (Math.random() * 6.5 + 6.5) * this._sizeFactor;
     } else if (type === 'volcanic') {
-      return (Math.random() * 4 + 4.5) * this._sizeFactor;
+      return (Math.random() * 6 + 6.5) * this._sizeFactor;
     } else if (type === 'exotic') {
-      return (Math.random() * 5 + 5) * this._sizeFactor;
+      return (Math.random() * 7 + 7) * this._sizeFactor;
     } else {
-      return (Math.random() * 4 + 4) * this._sizeFactor;
+      return (Math.random() * 6 + 6) * this._sizeFactor;
     }
   }
 
