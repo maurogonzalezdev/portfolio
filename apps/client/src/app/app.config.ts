@@ -4,7 +4,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideImageKitLoader } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideImageKitLoader(
-      'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-90'
+      'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-85'
     ),
   ],
 };

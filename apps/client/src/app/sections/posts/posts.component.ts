@@ -22,7 +22,8 @@ export class PostsComponent {
       description:
         'This is a test Description... This is a test Description...',
       tags: ['cats', 'cute', 'blog'],
-      image: '/images/cat.jpg',
+      image:
+        'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-90/tr:w-1650/hero-1536w_EmSp_MFVC.webp',
       creationDate: new Date().toLocaleDateString(),
     },
     {
@@ -31,7 +32,8 @@ export class PostsComponent {
       description:
         'This asdas sadasdd23d 32 asda 23. This asdas sadasdd23d 32 asda 23.',
       tags: ['cats', 'cute', 'blog'],
-      image: '/images/cat.jpg',
+      image:
+        'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-90/tr:w-1650/hero-1536w_EmSp_MFVC.webp',
       creationDate: new Date().toLocaleDateString(),
     },
     {
@@ -39,7 +41,8 @@ export class PostsComponent {
       title: 'f34¨ñ+ skjfnds dfs a12_s sdkjfnds fds[asdad] gdfg! #" (asdads)',
       description: 'Tasd[/&8] 8] 4f34b +´}- 4f34b +´}-',
       tags: ['cats', 'cute', 'blog'],
-      image: '/images/cat.jpg',
+      image:
+        'https://ik.imagekit.io/maurogonzalezdev/portfolio/tr:q-90/tr:w-1650/hero-1536w_EmSp_MFVC.webp',
       creationDate: new Date().toLocaleDateString(),
     },
   ];

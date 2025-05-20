@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable, NgZone, PLATFORM_ID } from '@angular/core';
 
 import { Theme } from '@client/app/shared/types';
 import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
@@ -10,19 +10,25 @@ import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 export class ThemeSwitcherService {
   private readonly _document: Document = inject(DOCUMENT);
   private readonly _platformId: Object = inject(PLATFORM_ID);
+  private readonly _ngZone: NgZone = inject(NgZone);
 
   private _theme$: BehaviorSubject<Theme> = new BehaviorSubject<Theme>('dark');
 
-  constructor() {
-    if (!isPlatformServer(this._platformId)) {
-      this._theme$.next(this._getThemeFromLocalStorage());
-      const loader = this._document.getElementById('loader');
-      loader!.remove();
-    }
-  }
-
   public getTheme$(): Observable<Theme> {
     return this._theme$.asObservable().pipe(distinctUntilChanged());
+  }
+  public initTheme(): void {
+    if (!isPlatformServer(this._platformId)) {
+      this._ngZone.runOutsideAngular(() => {
+        setTimeout(() => {
+          this._theme$.next(this._getThemeFromLocalStorage());
+          const loader = this._document.getElementById('loader');
+          if (loader) {
+            loader.remove();
+          }
+        }, 200);
+      });
+    }
   }
 
   private _getThemeFromLocalStorage(): Theme {

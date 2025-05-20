@@ -27,15 +27,15 @@ import {
 export class StarAnimationService {
   private _starColors = [
     '#ffffff',
-    '#F9E9BE',
-    '#FF828E',
-    '#80ACEF',
-    '#76DE95',
-    '#FFD700',
+    '#FFF3D3',
+    '#FFC8CD',
+    '#B0CDF8',
+    '#DEEFBB',
+    '#FFEC88',
     '#E6E6FA',
-    '#87CEFA',
-    '#FF69B4',
-    '#7FFFD4',
+    '#A8DEFF',
+    '#FFADD6',
+    '#C7FFEC',
   ];
 
   private _planetColors = {

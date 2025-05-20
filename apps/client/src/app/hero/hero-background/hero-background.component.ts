@@ -15,11 +15,12 @@ import {
 } from '@angular/core';
 
 import { StarAnimationService } from '@client/app/hero/services/star-animation.service';
-import { Theme } from '@client/app/shared/types';
+import { Breakpoint, Theme } from '@client/app/shared/types';
 import { ThemeSwitcherService } from '@client/app/shared/services/theme-switcher.service';
 
 import { debounceTime, take } from 'rxjs/operators';
 import { Subject, takeUntil, fromEvent, timer } from 'rxjs';
+import { BreakpointObserverService } from '@client/app/shared/services/breakpoint-observer.service';
 
 @Component({
   selector: 'hero-background',
@@ -100,9 +101,9 @@ export class HeroBackgroundComponent
   private _resizeTimeout?: number;
   // Properties for element count
   private _originalStarCount: number = 600;
-  private _originalPlanetCount: number = 8;
+  private _originalPlanetCount: number = 7;
   private _starCount: number = 600;
-  private _planetCount: number = 8;
+  private _planetCount: number = 7;
   // Factor to adjust the size of stars and planets
   private _sizeFactor: number = 1.0;
 

@@ -1,11 +1,12 @@
 import { Component, inject, Input } from '@angular/core';
-import { DOCUMENT, Location } from '@angular/common';
+
+import { NavbarService } from '@client/app/shared/services/navbar.service';
 
 @Component({
   selector: 'shared-scroll-navigator',
   standalone: true,
   templateUrl: './scroll-navigator.component.html',
-  styleUrls: ['./scroll-navigator.component.css'],
+  styleUrl: './scroll-navigator.component.css',
 })
 export class ScrollNavigatorComponent {
   @Input({ required: true })
@@ -14,8 +15,7 @@ export class ScrollNavigatorComponent {
     this._id = scrollTo.trim().toLowerCase();
   }
 
-  private readonly _document: Document = inject(DOCUMENT);
-  private readonly _location: Location = inject(Location);
+  private readonly _navbarService: NavbarService = inject(NavbarService);
 
   private _id: string = '';
 
@@ -24,11 +24,6 @@ export class ScrollNavigatorComponent {
   }
 
   public navigate(): void {
-    this._location.replaceState(`#${this._id}`);
-
-    this._document.getElementById(this._id)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
+    this._navbarService.navigateToFragment(`#${this._id}`);
   }
 }
