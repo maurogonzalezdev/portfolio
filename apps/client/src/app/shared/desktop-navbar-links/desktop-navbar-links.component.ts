@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { DesktopNavbarLinkComponent } from '@client/app/shared/desktop-navbar-link/desktop-navbar-link.component';
 import { NavbarService } from '@client/app/shared/services/navbar.service';
@@ -9,6 +9,8 @@ import { NavLink, NavLinkItem } from '@client/app/shared/interfaces';
   standalone: true,
   imports: [DesktopNavbarLinkComponent],
   templateUrl: './desktop-navbar-links.component.html',
+  styleUrl: './desktop-navbar-links.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DesktopNavbarLinksComponent {
   private readonly _navbarService: NavbarService = inject(NavbarService);
