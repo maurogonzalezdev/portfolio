@@ -1,0 +1,29 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-to-top {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Target the deferred components with these classes */
+.animation-load {
+  animation: fadeIn 0.1s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animation-load {
+    animation: none;
+  }
+
+  .back-to-top {
+    transition: none;
+  }
+}

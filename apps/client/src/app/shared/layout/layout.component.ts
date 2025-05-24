@@ -2,6 +2,7 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AboutMeComponent } from '@client/app/sections/about-me/about-me.component';
+import { BackToTopComponent } from '@client/app/shared/back-to-top/back-to-top.component';
 import { Breakpoint } from '@client/app/shared/types';
 import { BreakpointObserverService } from '@client/app/shared/services/breakpoint-observer.service';
 import { ContactComponent } from '@client/app/sections/contact/contact.component';
@@ -18,25 +19,29 @@ import { ScrollNavigatorComponent } from '@client/app/shared/scroll-navigator/sc
 import { ScrollSpyDirective } from '@client/app/shared/directives/scroll-spy.directive';
 import { SkillsComponent } from '@client/app/sections/skills/skills.component';
 import { VerticalDividerComponent } from '@client/app/shared/vertical-divider/vertical-divider.component';
+import { combineLatestWith, Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'shared-layout',
   standalone: true,
   imports: [
     AboutMeComponent,
+    BackToTopComponent,
     ContactComponent,
     DesktopNavbarComponent,
     HeroContainerComponent,
-    PostsComponent,
-    MobileNavbarComponent,
-    ProjectsComponent,
-    ScrollNavigatorComponent,
-    SkillsComponent,
-    VerticalDividerComponent,
     ImagotypeComponent,
     MobileHeroComponent,
+    MobileNavbarComponent,
     OptionsBarComponent,
+    PostsComponent,
+    ProjectsComponent,
+    ScrollNavigatorComponent,
     ScrollSpyDirective,
+    SkillsComponent,
+    VerticalDividerComponent,
+    AsyncPipe,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
@@ -66,5 +71,9 @@ export class LayoutComponent implements OnInit {
 
   get getIsMobile(): boolean {
     return this._isMobile;
+  }
+
+  public getCurrentFragment$(): Observable<string> {
+    return this._navbarService.getCurrentFragment$;
   }
 }

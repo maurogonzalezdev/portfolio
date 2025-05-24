@@ -7,12 +7,17 @@
   >
     @if(getIsMobile){
     <div class="block lg:hidden">
-      <shared-mobile-navbar class="block lg:hidden z-[999]"> </shared-mobile-navbar>
+      <shared-mobile-navbar class="block lg:hidden z-[999]">
+      </shared-mobile-navbar>
       <hero-mobile-hero
         class="block lg:hidden absolute w-full h-full z-50"
       ></hero-mobile-hero>
     </div>
-    }@else { @defer(on immediate; prefetch on idle){
+    @if((getCurrentFragment$() | async) !== '/' && (getCurrentFragment$() |
+    async) !== '#home' && (getCurrentFragment$() | async) !== '' &&
+    (getCurrentFragment$() | async) !== 'home'){
+    <shared-back-to-top></shared-back-to-top>
+    } }@else { @defer(on immediate; prefetch on idle){
     <div
       class="absolute hidden lg:block lg:w-auto lg:top-auto lg:bottom-6 lg:left-6 2k:bottom-10 2k:left-10 z-50"
     >
