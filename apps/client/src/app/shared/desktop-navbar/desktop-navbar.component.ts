@@ -7,5 +7,6 @@ import { DesktopNavbarLinksComponent } from '@client/app/shared/desktop-navbar-l
   standalone: true,
   imports: [DesktopNavbarLinksComponent],
   templateUrl: './desktop-navbar.component.html',
+  styleUrl: './desktop-navbar.component.css',
 })
 export class DesktopNavbarComponent {}

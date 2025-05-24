@@ -12,6 +12,7 @@ import { heroArrowUpRightMini } from '@ng-icons/heroicons/mini';
   standalone: true,
   imports: [ThemeSwitcherComponent, OptionLinkComponent],
   templateUrl: './options-bar.component.html',
+  styleUrl: './options-bar.component.css',
 })
 export class OptionsBarComponent {
   private readonly _navbarService: NavbarService = inject(NavbarService);

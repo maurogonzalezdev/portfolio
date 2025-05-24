@@ -1,11 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  DestroyRef,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AboutMeComponent } from '@client/app/sections/about-me/about-me.component';
 import { Breakpoint } from '@client/app/shared/types';
@@ -16,22 +10,19 @@ import { HeroContainerComponent } from '@client/app/hero/container/hero-containe
 import { ImagotypeComponent } from '@client/app/shared/imagotype/imagotype.component';
 import { MobileHeroComponent } from '@client/app/hero/mobile-hero/mobile-hero.component';
 import { MobileNavbarComponent } from '@client/app/shared/mobile-navbar/mobile-navbar.component';
+import { NavbarService } from '@client/app/shared/services/navbar.service';
 import { OptionsBarComponent } from '@client/app/shared/options-bar/options-bar.component';
 import { PostsComponent } from '@client/app/sections/posts/posts.component';
 import { ProjectsComponent } from '@client/app/sections/projects/projects.component';
 import { ScrollNavigatorComponent } from '@client/app/shared/scroll-navigator/scroll-navigator.component';
+import { ScrollSpyDirective } from '@client/app/shared/directives/scroll-spy.directive';
 import { SkillsComponent } from '@client/app/sections/skills/skills.component';
 import { VerticalDividerComponent } from '@client/app/shared/vertical-divider/vertical-divider.component';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavbarService } from '../services/navbar.service';
-import { ScrollSpyDirective } from '../directives/scroll-spy.directive';
-import { ThemeSwitcherService } from '../services/theme-switcher.service';
 
 @Component({
   selector: 'shared-layout',
   standalone: true,
   imports: [
-    CommonModule,
     AboutMeComponent,
     ContactComponent,
     DesktopNavbarComponent,
@@ -50,22 +41,13 @@ import { ThemeSwitcherService } from '../services/theme-switcher.service';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
-export class LayoutComponent implements OnInit, AfterViewInit {
+export class LayoutComponent implements OnInit {
   private readonly _breakpointObserverService: BreakpointObserverService =
     inject(BreakpointObserverService);
   private readonly _destroyRef: DestroyRef = inject(DestroyRef);
   private readonly _navbarService: NavbarService = inject(NavbarService);
-  private readonly _themeSwitcherService: ThemeSwitcherService =
-    inject(ThemeSwitcherService);
 
   private _isMobile: boolean = true;
-
-  constructor() {
-    this._themeSwitcherService.initTheme();
-  }
-  ngAfterViewInit(): void {
-    this._navbarService.initialNavigation();
-  }
 
   ngOnInit(): void {
     this._breakpointObserverService
@@ -78,6 +60,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
           this._isMobile = true;
         }
       });
+
+    this._navbarService.initialNavigation();
   }
 
   get getIsMobile(): boolean {

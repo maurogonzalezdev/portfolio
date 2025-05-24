@@ -1,0 +1,5 @@
+<div class="animation-load">
+@for(planet of getPlanets(); track planet.id){
+  <hero-planet [setPlanet]="planet" [setBreakpoint]="getBreakpoint"></hero-planet>
+}
+</div>

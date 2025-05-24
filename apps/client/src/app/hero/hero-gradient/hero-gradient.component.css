@@ -1,0 +1,14 @@
+.gradient-dark-mode {
+  background: linear-gradient(
+    160deg,
+    rgba(68, 52, 92, 0.6) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+}
+.gradient-purple-mode {
+  background: linear-gradient(
+    160deg,
+    rgba(149, 79, 182, 0.6) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+}

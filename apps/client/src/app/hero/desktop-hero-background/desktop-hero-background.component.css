@@ -1,0 +1,25 @@
+@media (min-width: 768px) {
+@keyframes starTwinkle {
+  0%, 100% {
+    background-position: 0% 0%;
+    filter: brightness(0.9) contrast(1);
+  }
+  25% {
+    background-position: 20% -15%;
+    filter: brightness(1.1) contrast(1.05);
+  }
+  50% {
+    background-position: 10% 30%;
+    filter: brightness(0.95) contrast(0.98);
+  }
+  75% {
+    background-position: -25% 15%;
+    filter: brightness(1.15) contrast(1.1);
+  }
+}
+
+  .starfield {
+    animation: starTwinkle 30s ease-in-out infinite;
+    animation-delay: 5s;
+  }
+}
