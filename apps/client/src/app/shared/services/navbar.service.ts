@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 
 import { Breakpoint, NavLinks, OptionLinks } from '@client/app/shared/types';
 import { BreakpointObserverService } from '@client/app/shared/services/breakpoint-observer.service';
+import { environment } from '@client/environments/environment';
 import { LoggingService } from '@client/app/shared/services/logging.service';
 
 import { heroCodeBracketSquareSolid } from '@ng-icons/heroicons/solid';
 import { heroDocumentTextSolid } from '@ng-icons/heroicons/solid';
 import { heroEnvelopeSolid } from '@ng-icons/heroicons/solid';
 import { heroHomeSolid } from '@ng-icons/heroicons/solid';
-import { heroMegaphoneSolid } from '@ng-icons/heroicons/solid';
 import { heroRocketLaunchSolid } from '@ng-icons/heroicons/solid';
+import { heroMegaphoneSolid } from '@ng-icons/heroicons/solid';
 import { heroUserCircleSolid } from '@ng-icons/heroicons/solid';
-
 import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 
 @Injectable({
@@ -99,21 +99,21 @@ export class NavbarService {
       downloadResume: {
         id: 1,
         name: 'Download Resume',
-        url: 'https://drive.usercontent.google.com/uc?id=1Dar9fgvWvijhHlek8J-YylfEgCtxIVIu&export=download',
+        url: environment.resumeUrl,
       },
     },
     {
-      blog: {
+      linkedin: {
         id: 2,
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/mauriciogcabrera/',
+        url: process.env.PORTFOLIO_CLIENT_LINKEDIN_URL,
       },
     },
     {
       github: {
         id: 3,
         name: 'Github',
-        url: 'https://github.com/maurogonzalezdev',
+        url: process.env.PORTFOLIO_CLIENT_GITHUB_URL,
       },
     },
   ];

@@ -1,0 +1,27 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Target the deferred components with these classes */
+.animation-load {
+  animation: fadeIn 0.1s ease-out forwards;
+}
+
+@media (max-width: 767px) {
+  .animation-load {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .animation-load {
+    animation: none;
+  }
+}

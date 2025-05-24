@@ -3,7 +3,7 @@ import { Route } from '@angular/router';
 export const appRoutes: Route[] = [
   {
     path: '',
-    async loadComponent() {
+    loadComponent: async () => {
       return import('./shared/layout/layout.component').then(
         (m) => m.LayoutComponent
       );
@@ -11,8 +11,11 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'blog',
-    loadComponent: async () =>
-      import('./blog/layout/layout.component').then((m) => m.LayoutComponent),
+    loadComponent: async () => {
+      return import('./blog/layout/layout.component').then(
+        (m) => m.LayoutComponent
+      );
+    },
   },
   {
     path: '**',

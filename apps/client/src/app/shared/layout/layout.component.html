@@ -7,19 +7,19 @@
   >
     @if(getIsMobile){
     <div class="block lg:hidden">
-      <shared-mobile-navbar> </shared-mobile-navbar>
-      <hero-mobile-hero></hero-mobile-hero>
+      <shared-mobile-navbar class="block lg:hidden z-[999]"> </shared-mobile-navbar>
+      <hero-mobile-hero
+        class="block lg:hidden absolute w-full h-full z-50"
+      ></hero-mobile-hero>
     </div>
-    }@else {
+    }@else { @defer(on immediate; prefetch on idle){
     <div
       class="absolute hidden lg:block lg:w-auto lg:top-auto lg:bottom-6 lg:left-6 2k:bottom-10 2k:left-10 z-50"
     >
       <shared-imagotype></shared-imagotype>
     </div>
     <shared-options-bar class="hidden lg:block"></shared-options-bar>
-    <shared-desktop-navbar class="hidden lg:block"> </shared-desktop-navbar>
-
-    }
+    <shared-desktop-navbar class="hidden lg:block"> </shared-desktop-navbar>} }
 
     <hero-container></hero-container>
   </header>

@@ -1,13 +1,10 @@
 <div
-  class="relative w-[200px] h-[48px] md:w-[230px] md:h-[55px] lg:w-[220px] lg:h-[53px] xxl:w-[380px] xxl:h-[91px] 4k:w-[500px] 4k:h-[120px] "
+  class="relative w-[200px] h-[48px] md:w-[230px] md:h-[55px] lg:w-[220px] lg:h-[53px] 4k:w-[240px] 4k:h-[73px] animation-load"
 >
-  <img
-    [ngSrc]="getImageUrl"
-    alt="mauro-gonzalez.dev imagotype"
-    priority
-    aria-label="Logo"
+  <div
+    class="w-[200px] h-[48px] bg-[url(https://ik.imagekit.io/maurogonzalezdev/portfolio/imagotype_1325w_6c2igRL-H.webp?tr=w-200,q-100)] md:w-[230px] md:h-[55px] md:bg-[url(https://ik.imagekit.io/maurogonzalezdev/portfolio/imagotype_1325w_6c2igRL-H.webp?tr=w-230,q-100)] lg:w-[220px] lg:h-[53px] lg:bg-[url(https://ik.imagekit.io/maurogonzalezdev/portfolio/imagotype_1325w_6c2igRL-H.webp?tr=w-220,q-100)] 4k:w-[240px] 4k:h-[73px] 4k:bg-[url(https://ik.imagekit.io/maurogonzalezdev/portfolio/imagotype_1325w_6c2igRL-H.webp?tr=w-240,q-100)] bg-no-repeat bg-cover cursor-pointer hover:opacity-90 hover:scale-105"
     (click)="reloadPage()"
-    class="cursor-pointer w-full h-full object-cover hover:opacity-90 hover:scale-105"
-    fill
-  />
+    aria-label="Logo"
+    title="Logo"
+  ></div>
 </div>

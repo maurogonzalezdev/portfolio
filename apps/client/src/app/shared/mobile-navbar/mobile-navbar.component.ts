@@ -12,7 +12,6 @@ import { heroBars3 } from '@ng-icons/heroicons/outline';
   standalone: true,
   imports: [MobileNavbarDrawerComponent, MobileNavbarIconComponent],
   templateUrl: './mobile-navbar.component.html',
-  styleUrl: './mobile-navbar.component.css',
 })
 export class MobileNavbarComponent implements OnInit {
   private readonly _navbarService: NavbarService = inject(NavbarService);

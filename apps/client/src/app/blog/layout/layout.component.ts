@@ -1,11 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
+import { ThemeSwitcherService } from '@client/app/shared/services/theme-switcher.service';
 
 @Component({
   selector: 'blog-layout',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
-export class LayoutComponent {}
+export class LayoutComponent implements AfterViewInit {
+  private readonly _themeSwitcherService: ThemeSwitcherService =
+    inject(ThemeSwitcherService);
+
+  ngAfterViewInit(): void {
+    this._themeSwitcherService.removeLoader();
+  }
+}
