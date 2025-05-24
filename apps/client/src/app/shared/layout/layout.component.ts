@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -13,20 +14,22 @@ import { MobileHeroComponent } from '@client/app/hero/mobile-hero/mobile-hero.co
 import { MobileNavbarComponent } from '@client/app/shared/mobile-navbar/mobile-navbar.component';
 import { NavbarService } from '@client/app/shared/services/navbar.service';
 import { OptionsBarComponent } from '@client/app/shared/options-bar/options-bar.component';
+import { PlaceholderComponent } from '@client/app/shared/placeholder/placeholder.component';
 import { PostsComponent } from '@client/app/sections/posts/posts.component';
 import { ProjectsComponent } from '@client/app/sections/projects/projects.component';
 import { ScrollNavigatorComponent } from '@client/app/shared/scroll-navigator/scroll-navigator.component';
 import { ScrollSpyDirective } from '@client/app/shared/directives/scroll-spy.directive';
 import { SkillsComponent } from '@client/app/sections/skills/skills.component';
 import { VerticalDividerComponent } from '@client/app/shared/vertical-divider/vertical-divider.component';
-import { combineLatestWith, Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'shared-layout',
   standalone: true,
   imports: [
     AboutMeComponent,
+    AsyncPipe,
     BackToTopComponent,
     ContactComponent,
     DesktopNavbarComponent,
@@ -35,13 +38,13 @@ import { AsyncPipe } from '@angular/common';
     MobileHeroComponent,
     MobileNavbarComponent,
     OptionsBarComponent,
+    PlaceholderComponent,
     PostsComponent,
     ProjectsComponent,
     ScrollNavigatorComponent,
     ScrollSpyDirective,
     SkillsComponent,
     VerticalDividerComponent,
-    AsyncPipe,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
