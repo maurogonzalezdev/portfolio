@@ -1,0 +1,88 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  11% {
+    transform: translateY(4px) translateX(-3px) rotate(1deg);
+  }
+  23% {
+    transform: translateY(2px) translateX(2px) rotate(-0.5deg);
+  }
+  36% {
+    transform: translateY(6px) translateX(3px) rotate(1.5deg);
+  }
+  49% {
+    transform: translateY(3px) translateX(-4px) rotate(-0.8deg);
+  }
+  62% {
+    transform: translateY(1px) translateX(1px) rotate(0.7deg);
+  }
+  78% {
+    transform: translateY(5px) translateX(-2px) rotate(-1deg);
+  }
+  91% {
+    transform: translateY(2px) translateX(3px) rotate(0.3deg);
+  }
+}
+
+/* Window resize transitions */
+:host {
+  --transition-width-duration: 0ms;
+  --transition-height-duration: 0ms;
+  --transition-timing-function: ease-in-out;
+
+  margin-bottom: -4px;
+
+  @media (min-width: 3840px) {
+    margin-bottom: -26px;
+  }
+}
+
+:host,
+:host::before,
+:host::after {
+  transition-property: width, height;
+  transition-duration: var(--transition-width-duration),
+    var(--transition-height-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+/* Target the deferred components with these classes */
+.animation-load {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.floating-astronaut {
+  animation: float 15s ease-in-out infinite;
+  will-change: transform;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@media (max-width: 767px) {
+  .floating-astronaut {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animation-load {
+    animation: none;
+  }
+
+  .floating-astronaut {
+    animation: none;
+  }
+}

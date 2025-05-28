@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ThemeSwitcherService } from '@client/app/shared/services/theme-switcher.service';
+import { ThemeSwitcherService } from '@client/app/features/theme/services';
 
 @Component({
   imports: [RouterOutlet, CommonModule],

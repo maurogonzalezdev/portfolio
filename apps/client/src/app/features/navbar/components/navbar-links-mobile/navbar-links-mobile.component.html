@@ -1,0 +1,10 @@
+<!-- Specific Mobile Links -->
+<nav>
+  <ul class="flex flex-col gap-5 text-center">
+    @for(link of getNavLinks; track link.id){
+    <li>
+      <navbar-link-mobile [setLink]="link"></navbar-link-mobile>
+    </li>
+    }
+  </ul>
+</nav>

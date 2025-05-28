@@ -1,4 +1,4 @@
-import { ScrollSpyDirective } from '@client/app/shared/directives/scroll-spy.directive';
+import { ScrollSpyDirective } from '@client/app/shared/directives';
 
 describe('ScrollSpyDirective', () => {
   it('should create an instance', () => {

@@ -1,0 +1,23 @@
+<!-- Hero Container -->
+<section
+  class="w-full min-h-[100svh] flex flex-col items-center justify-end relative overflow-clip m-0 p-0 gap-0"
+>
+  <hero-gradient
+    [setIsDarkMode]="getIsDarkMode"
+    class="w-full h-full absolute opacity-30 z-40"
+  ></hero-gradient>
+  <hero-image class="z-30 relative bottom-0"></hero-image>
+  <hero-nebula class="z-20"></hero-nebula>
+  <hero-planets class="z-20"></hero-planets>
+  @if(getBreakpoint !== 'sm'){
+    <!-- Desktop Background -->
+  <hero-background-desktop
+    class="z-10 absolute inset-0 hidden md:block"
+  ></hero-background-desktop>
+  }@else {
+    <!-- Mobile Background -->
+  <hero-background-mobile
+    class="z-10 absolute inset-0 block md:hidden"
+  ></hero-background-mobile>
+  }
+</section>

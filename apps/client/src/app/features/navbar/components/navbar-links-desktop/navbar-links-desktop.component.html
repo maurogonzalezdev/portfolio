@@ -1,0 +1,12 @@
+<!-- Desktop Specific Links -->
+<nav>
+  <ul
+    class="flex flex-col justify-center gap-1 2k:gap-1.5 4k:gap-6 w-44 2k:w-52 4k:w-80 border-l-1 h-80 4k:h-[33rem] border-white navbar"
+  >
+    @for(link of getNavLinks(); track link.id){
+    <li>
+      <navbar-link-desktop [setLink]="link"></navbar-link-desktop>
+    </li>
+    }
+  </ul>
+</nav>

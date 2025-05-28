@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 
-import { NavbarService } from '@client/app/shared/services/navbar.service';
+import { LoggingService } from '@client/app/core/services';
+import { NavbarService } from '@client/app/features/navbar/services';
 
 import { Subject } from 'rxjs';
 
@@ -26,19 +27,22 @@ export class ScrollSpyDirective implements OnInit, AfterViewInit, OnDestroy {
     return;
   }
 
+  private _intersect$: Subject<string> = new Subject<string>(); // Change to emit the ID
+  private readonly _platformId: Object = inject(PLATFORM_ID);
+  private readonly _loggingService: LoggingService = inject(LoggingService);
+  private readonly _navbarService: NavbarService = inject(NavbarService);
+
+  // Default values for IntersectionObserver
   private _id: string = '';
   private _threshold: number = 0.6;
   private _rootMargin: string = '0px';
   private _observer: IntersectionObserver | null = null;
-  private _intersect$: Subject<string> = new Subject<string>(); // Change to emit the ID
-
-  private readonly _platformId: Object = inject(PLATFORM_ID);
-  private readonly _navbarService: NavbarService = inject(NavbarService);
 
   constructor(private _element: ElementRef) {}
 
   ngOnInit() {
     if (!isPlatformServer(this._platformId)) {
+      this._loggingService.log('info', 'ScrollSpyDirective initialized');
       this._createObserver();
       this._startObserving();
     }
@@ -50,6 +54,7 @@ export class ScrollSpyDirective implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  // Method to create the IntersectionObserver
   private _createObserver(): void {
     const options = {
       root: null,
@@ -70,7 +75,12 @@ export class ScrollSpyDirective implements OnInit, AfterViewInit, OnDestroy {
     }, options);
   }
 
+  // Method to start observing the element
   private _startObserving() {
+    this._loggingService.log(
+      'info',
+      `Starting to observe element with ID: ${this._id}`
+    );
     this._observer?.observe(this._element.nativeElement);
   }
 

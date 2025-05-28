@@ -1,0 +1,5 @@
+<div class="flex gap-4">
+  @for(button of getThemeButtons; track button.id){
+  <theme-switcher-button [setThemeButton]="button"></theme-switcher-button>
+  }
+</div>

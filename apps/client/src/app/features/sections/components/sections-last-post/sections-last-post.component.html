@@ -1,0 +1,31 @@
+<!-- Single Post -->
+<article
+  [ngStyle]="getArticleStyle()"
+  class="transition-all duration-300 ease-in-out w-full h-32 lg:h-36 2xl:h-44 bg-cover bg-center bg-no-repeat relative border border-dark-gray rounded-tr-4xl hover:bg-size-[130%]"
+>
+  <h5
+    class="z-20 relative mt-1 lg:mt-2.5 p-1.5 text-center text-shadow-2xs font-semibold text-sm 2k:text-2xl tracking-wide h-8 overflow-y-auto"
+  >
+    {{ getLastPost.title }}
+  </h5>
+
+  <p
+    class="z-30 relative mt-0.5 md:mt-2 text-center text-sm md:text-base lg:text-sm 2k:text-2xl font-light h-8 overflow-y-auto"
+  >
+    {{ getLastPost.description }}
+  </p>
+  <ul
+    class="z-20 relative w-3/6 flex justify-evenly m-auto mt-1 lg:mt-1.5 bg-accent"
+  >
+    @for(tag of getLastPost.tags; track tag){
+    <li>
+      {{ tag }}
+    </li>
+    }
+  </ul>
+  @if(getBreakpoint!=='sm'){
+  <footer class="z-20 relative text-center italic text-sm 2k:text-xl mt-1">
+    <p>Creation date: {{ getLastPost.creationDate }}</p>
+  </footer>
+  }
+</article>
