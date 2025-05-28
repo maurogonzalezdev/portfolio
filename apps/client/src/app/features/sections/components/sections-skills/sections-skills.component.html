@@ -1,0 +1,53 @@
+<sections-title
+  [setTitle]="'Skills'"
+  [setSubtitle]="'My areas of expertise'"
+  [setAlign]="'right'"
+  [icon]="getSkillsIcon"
+  [color]="'var(--color-tertiary)'"
+></sections-title>
+
+<!-- Skills List -->
+<sections-caption
+  [setAlignment]="'right'"
+  [setCaption]="'Technical Skills'"
+></sections-caption>
+<ul class="flex justify-end items-center flex-wrap gap-1 md:gap-3 w-full mb-1">
+  @for(skill of getTechnicalSkills(); track skill.id){
+  <sections-skill
+    [setSkillIcon]="skill.icon"
+    [setSkillDescription]="skill.description"
+    [setSkillName]="skill.name"
+  ></sections-skill>
+  }
+</ul>
+
+<sections-caption
+  [setAlignment]="'right'"
+  [setCaption]="'Soft Skills'"
+></sections-caption>
+<ul class="flex justify-end items-center flex-wrap gap-1 md:gap-3 w-full mb-1">
+  @for(skill of getSoftSkills(); track skill.id){
+  <sections-skill
+    [setSkillIcon]="skill.icon"
+    [setSkillDescription]="skill.description"
+    [setSkillName]="skill.name"
+  ></sections-skill>
+  }
+</ul>
+
+<!-- Mobile Specific Aproach -->
+@if(!getIsSmallScreen){
+<sections-caption
+  [setAlignment]="'right'"
+  [setCaption]="'General Skills'"
+></sections-caption>
+<ul class="flex justify-end items-center flex-wrap gap-1 md:gap-3 w-full mb-2">
+  @for(skill of getGeneralSkills(); track skill.id){
+  <sections-skill
+    [setSkillIcon]="skill.icon"
+    [setSkillDescription]="skill.description"
+    [setSkillName]="skill.name"
+  ></sections-skill>
+  }
+</ul>
+}

@@ -4,17 +4,17 @@ export const appRoutes: Route[] = [
   {
     path: '',
     async loadComponent() {
-      return import('./shared/layout/layout.component').then(
-        (m) => m.LayoutComponent
+      return import('./core/layouts/main-layout/main-layout.component').then(
+        (m) => m.MainLayoutComponent
       );
     },
   },
   {
     path: 'blog',
     async loadComponent() {
-      return import('./blog/layout/layout.component').then(
-        (m) => m.LayoutComponent
-      );
+      return import(
+        './features/blog/layouts/blog-layout/blog-layout.component'
+      ).then((m) => m.BlogLayoutComponent);
     },
   },
   {

@@ -1,0 +1,12 @@
+<!-- Mobile Navbar Wrapper -->
+<div
+  class="fixed top-0 w-full h-16 z-[999] backdrop-blur-3xl flex items-center pl-9 md:pl-16"
+>
+  <navbar-icon-mobile
+    [setIcon]="getOpenIcon"
+    [setSize]="34"
+  ></navbar-icon-mobile>
+</div>
+@if (getIsOpen) {
+<navbar-drawer-mobile></navbar-drawer-mobile>
+}
