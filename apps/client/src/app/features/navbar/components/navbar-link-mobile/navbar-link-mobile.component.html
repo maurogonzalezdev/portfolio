@@ -3,20 +3,18 @@
   class="hover:text-gray-300 text-xl uppercase tracking-wide"
   (click)="closeMenu()"
 >
-
-  <a [attr.aria-label]="getLink.name"
-  (click)="navigateToFragment($event)"
-  [href]="getLink.fragment"
-  [class.text-contrast]="isActive"
-  [class.border-r-2]="isActive"
-  [class.border-contrast]="isActive"
-  [class.pr-3]="isActive"
-  [class.pl-2]="isActive"
-  [class.font-bold]="isActive"
-  [class.text-white]="!isActive"
-  [class.hover:text-gray]="!isActive"
->
+  <a
+    (click)="navigateToFragment($event)"
+    [href]="getLink.fragment"
+    [class.text-contrast]="isActive"
+    [class.border-r-2]="isActive"
+    [class.border-contrast]="isActive"
+    [class.pr-3]="isActive"
+    [class.pl-2]="isActive"
+    [class.font-bold]="isActive"
+    [class.text-white]="!isActive"
+    [class.hover:text-gray]="!isActive"
+  >
     {{ getLink.name }}
   </a>
-
 </span>

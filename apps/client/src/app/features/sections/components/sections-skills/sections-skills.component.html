@@ -13,11 +13,13 @@
 ></sections-caption>
 <ul class="flex justify-end items-center flex-wrap gap-1 md:gap-3 w-full mb-1">
   @for(skill of getTechnicalSkills(); track skill.id){
-  <sections-skill
-    [setSkillIcon]="skill.icon"
-    [setSkillDescription]="skill.description"
-    [setSkillName]="skill.name"
-  ></sections-skill>
+  <li>
+    <sections-skill
+      [setSkillIcon]="skill.icon"
+      [setSkillDescription]="skill.description"
+      [setSkillName]="skill.name"
+    ></sections-skill>
+  </li>
   }
 </ul>
 
@@ -27,11 +29,13 @@
 ></sections-caption>
 <ul class="flex justify-end items-center flex-wrap gap-1 md:gap-3 w-full mb-1">
   @for(skill of getSoftSkills(); track skill.id){
-  <sections-skill
-    [setSkillIcon]="skill.icon"
-    [setSkillDescription]="skill.description"
-    [setSkillName]="skill.name"
-  ></sections-skill>
+  <li>
+    <sections-skill
+      [setSkillIcon]="skill.icon"
+      [setSkillDescription]="skill.description"
+      [setSkillName]="skill.name"
+    ></sections-skill>
+  </li>
   }
 </ul>
 
@@ -43,11 +47,13 @@
 ></sections-caption>
 <ul class="flex justify-end items-center flex-wrap gap-1 md:gap-3 w-full mb-2">
   @for(skill of getGeneralSkills(); track skill.id){
-  <sections-skill
-    [setSkillIcon]="skill.icon"
-    [setSkillDescription]="skill.description"
-    [setSkillName]="skill.name"
-  ></sections-skill>
+  <li>
+    <sections-skill
+      [setSkillIcon]="skill.icon"
+      [setSkillDescription]="skill.description"
+      [setSkillName]="skill.name"
+    ></sections-skill>
+  </li>
   }
 </ul>
 }

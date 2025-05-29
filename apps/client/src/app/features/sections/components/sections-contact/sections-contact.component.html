@@ -14,15 +14,15 @@
 >
   <div class="mb-4">
     <label
-      for="controlName"
+      for="name"
       class="block text-sm 2k:text-2xl font-medium text-black mb-1"
-      >Your name</label
+      >Name</label
     >
     <input
-      id="controlName"
+      id="name"
       formControlName="name"
-      class="w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:border-dark-gray text-dark-gray focus:text-black"
-      placeholder="John Doe"
+      class="w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-black focus:border-black text-dark-gray focus:text-black"
+      placeholder="Write your name here"
       type="text"
       required
     />
@@ -33,15 +33,15 @@
 
   <div class="mb-4">
     <label
-      for="controlEmail"
+      for="email"
       class="block text-sm 2k:text-2xl font-medium text-black mb-1"
-      >Your contact email</label
+      >Contact email</label
     >
     <input
-      id="controlEmail"
+      id="email"
       formControlName="email"
-      class="w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:border-dark-gray text-dark-gray focus:text-black"
-      placeholder="contact@example.me"
+      class="w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-black focus:border-black text-dark-gray focus:text-black"
+      placeholder="Write your email here"
       type="email"
       required
     />
@@ -52,14 +52,15 @@
 
   <div class="mb-4">
     <label
-      for="controlContent"
+      for="message"
       class="block text-sm 2k:text-2xl font-medium text-black mb-1"
       >Message</label
     >
     <textarea
+      id="message"
       formControlName="content"
       required
-      class="w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:border-dark-gray text-dark-gray focus:text-black"
+      class="w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-black focus:border-black text-dark-gray focus:text-black"
       placeholder="Write your message here"
       rows="5"
     ></textarea>

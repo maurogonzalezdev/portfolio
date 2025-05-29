@@ -31,12 +31,22 @@ export class NavbarIconMobileComponent {
 
   private _size: number = 0;
   private _icon: string = '';
+  private _isOpen: boolean = false;
+
+  constructor() {
+    this._navbarService.getIsOpen$().subscribe((isOpen: boolean) => {
+      this._isOpen = isOpen;
+    });
+  }
 
   get getIcon(): string {
     return this._icon;
   }
   get getSize(): string {
     return String(this._size);
+  }
+  get getIsOpen(): boolean {
+    return this._isOpen;
   }
 
   // Toggles the mobile menu open or closed

@@ -45,7 +45,11 @@ export class HeroPlanetComponent {
     },
   };
   private _breakpoint: Breakpoint = 'sm';
-  public _isReady: boolean = false;
+  private _isReady: boolean = false;
+
+  get getIsReady() {
+    return this._isReady;
+  }
 
   private _checkIfReady() {
     // Check if the planet ID is set

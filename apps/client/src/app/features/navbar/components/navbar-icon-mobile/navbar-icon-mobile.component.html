@@ -1,12 +1,14 @@
 <!-- Mobile Icon -->
-<div
+<button
   (click)="toggleMenu()"
   class="cursor-pointer rounded-md w-11 h-11 bg-tertiary flex justify-center items-center leading-0 hover:bg-secondary transition-all duration-300 ease-in-out"
->
-  <ng-icon
-    [svg]="getIcon"
-    [size]="getSize"
-    [color]="'#ffffff'"
+    [attr.aria-expanded]="getIsOpen"
     aria-label="Toggle navigation menu"
+  >
+  <ng-icon
+  [svg]="getIcon"
+  [size]="getSize"
+  [color]="'#ffffff'"
+
   ></ng-icon>
-</div>
+</button>

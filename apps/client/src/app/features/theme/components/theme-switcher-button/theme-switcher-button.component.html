@@ -9,12 +9,15 @@
       : 'cursor-pointer hover:scale-110 hover:saturate-200 border-2 border-primary'
   "
   (click)="toggleTheme()"
+  aria-label="Switch Theme"
 >
-  <span class="w-7 absolute">
+  <span class="w-7 absolute" aria-hidden="true">
     @if(getThemeButton.name==='dark'){
-    <theme-dark-icon></theme-dark-icon>
+    <theme-dark-icon
+    ></theme-dark-icon>
     }@else{
-    <theme-purple-icon></theme-purple-icon>
+    <theme-purple-icon
+    ></theme-purple-icon>
     }
   </span>
 </button>

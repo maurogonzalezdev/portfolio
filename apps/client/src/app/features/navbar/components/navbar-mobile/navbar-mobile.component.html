@@ -8,5 +8,9 @@
   ></navbar-icon-mobile>
 </div>
 @if (getIsOpen) {
-<navbar-drawer-mobile></navbar-drawer-mobile>
+<navbar-drawer-mobile
+  [class.hidden]="!getIsOpen"
+  [class.block]="getIsOpen"
+  [attr.aria-hidden]="!getIsOpen"
+></navbar-drawer-mobile>
 }

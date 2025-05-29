@@ -76,7 +76,7 @@
   --color-*: initial;
   --color-white: rgba(255, 255, 255, 1);
   --color-gray: rgba(207, 207, 207, 1);
-  --color-dark-gray: rgba(136, 136, 136, 1);
+  --color-dark-gray: rgba(113, 113, 113, 1);
   --color-black: rgba(25, 25, 25, 1);
   --color-green: rgba(38, 179, 120, 1);
 
@@ -85,7 +85,8 @@
   --color-secondary: rgba(31, 31, 31, 1);
   --color-tertiary: rgb(43, 43, 43);
   --color-quaternary: rgba(33, 33, 33, 1);
-  --color-accent: rgba(189, 102, 255, 1);
+  --color-accent: rgba(164, 69, 237, 1);
+  --color-light-accent: rgba(197, 121, 255, 1);
   --color-contrast: rgba(255, 242, 217, 1);
 }
 
@@ -98,6 +99,7 @@
     --color-tertiary: rgba(44, 31, 59, 1);
     --color-quaternary: rgba(57, 45, 75, 1);
     --color-accent: rgba(255, 102, 163, 1);
+    --color-light-accent: rgba(255, 139, 185, 1);
     --color-contrast: rgba(183, 234, 253, 1);
   }
 }

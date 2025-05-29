@@ -1,6 +1,6 @@
 <!-- Deferred Planets -->
 @defer(on immediate){
-<div class="animation-load">
+<div class="animation-load" aria-hidden="true">
   @for(planet of getPlanets(); track planet.id){
   <hero-planet
     [setPlanet]="planet"
